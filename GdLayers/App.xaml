@@ -1,9 +1,34 @@
-﻿<Application x:Class="GdLayers.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:GdLayers"
-             StartupUri="MainWindow.xaml">
+﻿<Application
+    x:Class="GdLayers.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <!--  Resources  -->
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/BaseStyle.xaml" />
+
+                <!--  Resources/DataTemplates  -->
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/DataTemplates/ViewModelsDataTemplates.xaml" />
+
+                <!--  Resources/SharedStyles  -->
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/Windows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/TextBlocks.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/Buttons.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/IconImages.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/ListViews.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/TextBoxes.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/ScrollBar.xaml" />
+
+                <!--  Resources/SvgImages  -->
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SvgImages/DoubleRing.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
+
 </Application>

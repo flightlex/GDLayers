@@ -1,0 +1,43 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:GdLayers.Controls">
+
+    <Style
+        x:Key="TextBoxDefaultStyle"
+        BasedOn="{StaticResource BaseStyle}"
+        TargetType="{x:Type TextBox}">
+
+        <Setter Property="Focusable" Value="True" />
+
+        <Setter Property="FontFamily" Value="{StaticResource JetBrainsMono}" />
+        <Setter Property="Padding" Value="10,5" />
+
+        <Setter Property="Background" Value="{StaticResource SecondaryDarkBrush}" />
+        <Setter Property="BorderThickness" Value="0" />
+
+        <Style.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="4" />
+            </Style>
+        </Style.Resources>
+
+    </Style>
+
+    <Style TargetType="{x:Type controls:PlaceholderTextBox}">
+
+        <Style.Resources>
+            <Style
+                BasedOn="{StaticResource TextBlockDefaultStyle}"
+                TargetType="{x:Type TextBlock}">
+                <Setter Property="HorizontalAlignment" Value="Left" />
+            </Style>
+        </Style.Resources>
+
+    </Style>
+
+    <Style
+        BasedOn="{StaticResource TextBoxDefaultStyle}"
+        TargetType="{x:Type TextBox}" />
+
+</ResourceDictionary>

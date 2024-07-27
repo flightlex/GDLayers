@@ -7,7 +7,9 @@
     <AssemblyTitle>GdLayers</AssemblyTitle>
     <Product>GdLayers</Product>
     <Copyright>Copyright ©  2024</Copyright>
+	<Nullable>enable</Nullable>
     <OutputPath>bin\$(Configuration)\</OutputPath>
+	<LangVersion>latest</LangVersion>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -23,11 +25,33 @@
     <Page Remove="Properties\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-Bold.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-BoldItalic.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-ExtraBold.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-ExtraBoldItalic.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-ExtraLight.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-ExtraLightItalic.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-Italic.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-Light.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-LightItalic.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-Medium.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-MediumItalic.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-Regular.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-SemiBoldItalic.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-Thin.ttf" />
+    <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-ThinItalic.ttf" />
+    <None Remove="Resources\Media\DoubeRing.svg" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
     <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
-    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.122" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="SharpVectors.Wpf" Version="1.8.4.1" />
+    <PackageReference Include="SpicyTaco.AutoGrid" Version="1.2.29" />
     <PackageReference Include="System.Buffers" Version="4.5.1" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Memory" Version="4.5.5" />
@@ -36,6 +60,9 @@
     <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="GeometryDashAPI">
+      <HintPath>..\..\..\..\Desktop\ForkedGeometryDashAPI\GeometryDashAPI\bin\Release\netstandard\publish\GeometryDashAPI.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,5 +72,26 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-Bold.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-BoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-ExtraBold.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-ExtraBoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-ExtraLight.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-ExtraLightItalic.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-Italic.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-Light.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-LightItalic.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-Medium.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-MediumItalic.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-Regular.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-SemiBold.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-SemiBoldItalic.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-Thin.ttf" />
+    <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-ThinItalic.ttf" />
+    <Resource Include="Resources\Media\DoubeRing.svg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 </Project>

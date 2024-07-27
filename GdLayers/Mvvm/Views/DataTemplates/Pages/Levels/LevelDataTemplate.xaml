@@ -1,0 +1,139 @@
+﻿<Button
+    x:Class="GdLayers.Mvvm.Views.DataTemplates.Pages.Levels.LevelDataTemplate"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:levelPageModels="clr-namespace:GdLayers.Mvvm.Models.Pages.Levels"
+    xmlns:local="clr-namespace:GdLayers.Mvvm.Views.DataTemplates.Pages.Levels"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    HorizontalContentAlignment="Stretch"
+    d:DataContext="{d:DesignInstance Type=levelPageModels:LevelModel}"
+    d:DesignWidth="800"
+    Style="{StaticResource ButtonTransparentStyle}"
+    mc:Ignorable="d">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Click">
+            <i:InvokeCommandAction
+                Command="{Binding ClickCommand}"
+                CommandParameter="{Binding}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Border
+        Padding="20,10"
+        Background="{StaticResource SecondaryDarkBrush}"
+        BorderThickness="2"
+        CornerRadius="4">
+
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0 0.5" EndPoint="1 0.5">
+                <GradientStop Offset="0" Color="{StaticResource Orange}" />
+                <GradientStop Offset="0" Color="{StaticResource Orange}" />
+                <GradientStop Offset="0" Color="Transparent" />
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <!--  Border Brush Animation  -->
+        <i:Interaction.Triggers>
+            <i:DataTrigger
+                Binding="{Binding IsSelected}"
+                Value="True">
+
+                <i:ChangePropertyAction
+                    PropertyName="BorderThickness"
+                    Value="2" />
+
+                <i:ControlStoryboardAction>
+                    <i:ControlStoryboardAction.Storyboard>
+                        <Storyboard>
+
+                            <DoubleAnimation
+                                BeginTime="0:0:0.1"
+                                Storyboard.Target="{Binding RelativeSource={RelativeSource AncestorType=Border}}"
+                                Storyboard.TargetProperty="BorderBrush.(LinearGradientBrush.GradientStops)[1].(Offset)"
+                                To="1"
+                                Duration="0:0:0.15" />
+
+                            <DoubleAnimation
+                                Storyboard.Target="{Binding RelativeSource={RelativeSource AncestorType=Border}}"
+                                Storyboard.TargetProperty="BorderBrush.(LinearGradientBrush.GradientStops)[2].(Offset)"
+                                To="1"
+                                Duration="0:0:0.15" />
+
+                        </Storyboard>
+                    </i:ControlStoryboardAction.Storyboard>
+                </i:ControlStoryboardAction>
+
+            </i:DataTrigger>
+
+            <i:DataTrigger
+                Binding="{Binding IsSelected}"
+                Value="False">
+
+                <i:ControlStoryboardAction>
+                    <i:ControlStoryboardAction.Storyboard>
+                        <Storyboard>
+
+                            <DoubleAnimation
+                                Storyboard.Target="{Binding RelativeSource={RelativeSource AncestorType=Border}}"
+                                Storyboard.TargetProperty="BorderBrush.(LinearGradientBrush.GradientStops)[1].(Offset)"
+                                To="0"
+                                Duration="0:0:0.15" />
+
+                            <DoubleAnimation
+                                BeginTime="0:0:0.1"
+                                Storyboard.Target="{Binding RelativeSource={RelativeSource AncestorType=Border}}"
+                                Storyboard.TargetProperty="BorderBrush.(LinearGradientBrush.GradientStops)[2].(Offset)"
+                                To="0"
+                                Duration="0:0:0.15" />
+
+                        </Storyboard>
+                    </i:ControlStoryboardAction.Storyboard>
+                </i:ControlStoryboardAction>
+            </i:DataTrigger>
+
+        </i:Interaction.Triggers>
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <!--  Index  -->
+            <TextBlock
+                Grid.Column="0"
+                HorizontalAlignment="Left"
+                FontWeight="Bold"
+                Foreground="{StaticResource WhiteGrayBrush}"
+                Text="{Binding Index, Mode=OneWay, StringFormat={}{0}., FallbackValue='69.'}" />
+
+            <!--  Level Name  -->
+            <TextBlock
+                Grid.Column="1"
+                Margin="5,0,0,0"
+                HorizontalAlignment="Left"
+                FontWeight="Bold"
+                Text="{Binding Name, Mode=OneWay, FallbackValue='Level Name'}" />
+
+            <!--  Object Count  -->
+            <TextBlock
+                Grid.Column="2"
+                HorizontalAlignment="Left"
+                FontWeight="Bold">
+
+                <Run Text="{Binding ObjectCount, FallbackValue='69', Mode=OneWay}" />
+                <Run
+                    Foreground="{StaticResource WhiteGrayBrush}"
+                    Text="obj" />
+
+            </TextBlock>
+
+        </Grid>
+    </Border>
+
+</Button>

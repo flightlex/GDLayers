@@ -1,0 +1,15 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:pageViewModels="clr-namespace:GdLayers.Mvvm.ViewModels.Pages"
+    xmlns:pageViews="clr-namespace:GdLayers.Mvvm.Views.Pages">
+
+    <!--  Single Instances  -->
+    <pageViews:LevelsView x:Key="LevelsViewInstance" />
+
+    <!--  Data Templates  -->
+    <DataTemplate DataType="{x:Type pageViewModels:LevelsViewModel}">
+        <ContentPresenter Content="{StaticResource LevelsViewInstance}" />
+    </DataTemplate>
+
+</ResourceDictionary>

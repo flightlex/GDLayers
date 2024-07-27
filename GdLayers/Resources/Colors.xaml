@@ -1,0 +1,40 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="PrimaryDark">#1C1C1C</Color>
+    <SolidColorBrush
+        x:Key="PrimaryDarkBrush"
+        Color="{StaticResource PrimaryDark}" />
+
+    <Color x:Key="SecondaryDark">#303030</Color>
+    <SolidColorBrush
+        x:Key="SecondaryDarkBrush"
+        Color="{StaticResource SecondaryDark}" />
+
+    <Color x:Key="PrimaryGray">#454545</Color>
+    <SolidColorBrush
+        x:Key="PrimaryGrayBrush"
+        Color="{StaticResource PrimaryGray}" />
+
+    <Color x:Key="SecondaryGray">#555555</Color>
+    <SolidColorBrush
+        x:Key="SecondaryGrayBrush"
+        Color="{StaticResource SecondaryGray}" />
+
+    <Color x:Key="White">#F7F7F7</Color>
+    <SolidColorBrush
+        x:Key="WhiteBrush"
+        Color="{StaticResource White}" />
+
+    <Color x:Key="WhiteGray">#939393</Color>
+    <SolidColorBrush
+        x:Key="WhiteGrayBrush"
+        Color="{StaticResource WhiteGray}" />
+
+    <Color x:Key="Orange">#FF2C35</Color>
+    <SolidColorBrush
+        x:Key="OrangeBrush"
+        Color="{StaticResource Orange}" />
+
+</ResourceDictionary>

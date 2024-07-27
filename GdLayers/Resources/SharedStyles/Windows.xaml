@@ -1,0 +1,22 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style
+        x:Key="BorderlessWindow"
+        TargetType="{x:Type Window}">
+
+        <!--  Window Chrome  -->
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome
+                    CaptionHeight="0"
+                    CornerRadius="8"
+                    GlassFrameThickness="0"
+                    ResizeBorderThickness="8" />
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+</ResourceDictionary>

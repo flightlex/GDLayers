@@ -1,0 +1,67 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <DrawingImage x:Key="DoubeRingDrawingImageP1">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+                <GeometryDrawing>
+                    <GeometryDrawing.Pen>
+                        <Pen
+                            Brush="#FF707070"
+                            DashCap="Flat"
+                            EndLineCap="Round"
+                            LineJoin="Miter"
+                            MiterLimit="1"
+                            StartLineCap="Round"
+                            Thickness="4">
+                            <Pen.DashStyle>
+                                <DashStyle
+                                    Dashes="16.1006623496477 16.1006623496477"
+                                    Offset="0" />
+                            </Pen.DashStyle>
+                        </Pen>
+                    </GeometryDrawing.Pen>
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry
+                            Center="50,50"
+                            RadiusX="41"
+                            RadiusY="41" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="DoubeRingDrawingImageP2">
+        <DrawingImage.Drawing>
+            <DrawingGroup ClipGeometry="M0,0 V100 H100 V0 H0 Z">
+                <GeometryDrawing>
+                    <GeometryDrawing.Pen>
+                        <Pen
+                            Brush="#FF505050"
+                            DashCap="Flat"
+                            EndLineCap="Round"
+                            LineJoin="Miter"
+                            MiterLimit="1"
+                            StartLineCap="Round"
+                            Thickness="4">
+                            <Pen.DashStyle>
+                                <DashStyle
+                                    Dashes="14.1371669411541 14.1371669411541"
+                                    Offset="56.5486677646163" />
+                            </Pen.DashStyle>
+                        </Pen>
+                    </GeometryDrawing.Pen>
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry
+                            Center="50,50"
+                            RadiusX="36"
+                            RadiusY="36" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+</ResourceDictionary>
