@@ -1,0 +1,165 @@
+﻿<UserControl
+    x:Class="GdLayers.Mvvm.Views.Pages.LayersView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:GdLayers.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:layerDataTemplates="clr-namespace:GdLayers.Mvvm.Views.DataTemplates.Pages.Layers"
+    xmlns:local="clr-namespace:GdLayers.Mvvm.Views.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pages="clr-namespace:GdLayers.Mvvm.ViewModels.Pages"
+    xmlns:st="http://schemas.spicytaco.io/"
+    d:DataContext="{d:DesignInstance Type=pages:LayersViewModel}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!--  Object Types Search & Go Back  -->
+        <st:StackPanel
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="20,0"
+            Orientation="Horizontal">
+
+            <!--  Go Back  -->
+            <Button
+                Margin="0,20"
+                HorizontalAlignment="Left"
+                Command="{Binding ReturnBackCommand}"
+                IsEnabled="{Binding CanGoBack}"
+                Style="{StaticResource ButtonTransparentStyle}">
+                <fa:IconImage Icon="ArrowLeft" />
+            </Button>
+
+            <!--  Search  -->
+            <controls:PlaceholderTextBox
+                Margin="20,0,0,0"
+                VerticalAlignment="Center"
+                st:StackPanel.Fill="Fill"
+                Placeholder="Search for type"
+                Text="{Binding GdObjectTypeListSearchQuery, UpdateSourceTrigger=PropertyChanged}" />
+
+        </st:StackPanel>
+
+        <!--  Object Types  -->
+        <ListView
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="20,0"
+            ItemsSource="{Binding GdObjectTypeListModelsCollectionView}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <layerDataTemplates:GdObjectTypeListDataTemplate DataContext="{Binding}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+        <!--  Layers Caption  -->
+        <Grid
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="20,0">
+
+            <!--  Auto Preset  -->
+            <!--  NOT IMPLEMENTED YET  -->
+            <Button
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Content="Preset - Auto"
+                Visibility="Collapsed" />
+
+            <StackPanel
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+
+                <!--  Add Layer  -->
+                <Button Command="{Binding AddLayerCommand}">
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Text="Layer" />
+                        <fa:IconBlock
+                            Margin="5,0,0,0"
+                            Icon="Plus"
+                            Opacity="0.5" />
+
+                    </StackPanel>
+
+                </Button>
+
+                <!--  Apply Button  -->
+                <Button
+                    Margin="10,0,0,0"
+                    Command="{Binding ApplyCommand}"
+                    IsEnabled="{Binding CanBeApplied}">
+
+                    <StackPanel Orientation="Horizontal">
+
+                        <TextBlock Text="Apply">
+                            <i:Interaction.Triggers>
+                                <i:DataTrigger
+                                    Binding="{Binding IsApplying}"
+                                    Value="True">
+                                    <i:ChangePropertyAction
+                                        PropertyName="Text"
+                                        Value="Applying..." />
+                                </i:DataTrigger>
+
+                                <i:DataTrigger
+                                    Binding="{Binding IsApplying}"
+                                    Value="False">
+                                    <i:ChangePropertyAction
+                                        PropertyName="Text"
+                                        Value="Apply" />
+                                </i:DataTrigger>
+                            </i:Interaction.Triggers>
+                        </TextBlock>
+
+                        <fa:IconBlock
+                            Margin="5,0,0,0"
+                            Icon="Check"
+                            Opacity="0.5" />
+
+                    </StackPanel>
+
+                </Button>
+
+            </StackPanel>
+
+        </Grid>
+
+        <!--  Layers List  -->
+        <ListView
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="20,0"
+            ItemsSource="{Binding Layers}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <layerDataTemplates:LayerDataTemplate DataContext="{Binding}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+    </Grid>
+
+</UserControl>

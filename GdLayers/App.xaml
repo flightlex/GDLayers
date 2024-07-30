@@ -12,9 +12,6 @@
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/BaseStyle.xaml" />
 
-                <!--  Resources/DataTemplates  -->
-                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/DataTemplates/ViewModelsDataTemplates.xaml" />
-
                 <!--  Resources/SharedStyles  -->
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/Windows.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/TextBlocks.xaml" />
@@ -23,6 +20,9 @@
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/ListViews.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/TextBoxes.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/ScrollBar.xaml" />
+
+                <!--  Resources/DataTemplates  -->
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/DataTemplates/ViewModelsDataTemplates.xaml" />
 
                 <!--  Resources/SvgImages  -->
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SvgImages/DoubleRing.xaml" />

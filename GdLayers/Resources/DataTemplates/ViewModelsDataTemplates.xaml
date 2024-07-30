@@ -6,10 +6,15 @@
 
     <!--  Single Instances  -->
     <pageViews:LevelsView x:Key="LevelsViewInstance" />
+    <pageViews:LayersView x:Key="LayersViewInstance" />
 
     <!--  Data Templates  -->
     <DataTemplate DataType="{x:Type pageViewModels:LevelsViewModel}">
         <ContentPresenter Content="{StaticResource LevelsViewInstance}" />
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type pageViewModels:LayersViewModel}">
+        <ContentPresenter Content="{StaticResource LayersViewInstance}" />
     </DataTemplate>
 
 </ResourceDictionary>

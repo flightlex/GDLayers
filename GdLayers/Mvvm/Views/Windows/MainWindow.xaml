@@ -26,23 +26,35 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <Grid Margin="20">
+    <Grid>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
+        <!--  Background Texture  -->
+        <Image
+            Grid.RowSpan="2"
+            RenderOptions.BitmapScalingMode="Fant"
+            Source="pack://application:,,,/GdLayers;component/Resources/Media/BackgroundTexture.jpg"
+            Stretch="UniformToFill" />
 
-        <!--  Caption  -->
-        <mainWindowViews:CaptionView
-            Grid.Row="0"
-            VerticalAlignment="Center"
-            DataContext="{Binding CaptionViewModel}" />
+        <Grid Margin="20">
 
-        <!--  CurrentёчPage  -->
-        <ContentControl
-            Grid.Row="1"
-            Content="{Binding CurrentViewModel}" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!--  Caption  -->
+            <mainWindowViews:CaptionView
+                Grid.Row="0"
+                VerticalAlignment="Center"
+                DataContext="{Binding CaptionViewModel}" />
+
+            <!--  CurrentёчPage  -->
+            <ContentControl
+                Grid.Row="1"
+                Margin="0,15,0,0"
+                Content="{Binding CurrentViewModel}" />
+
+        </Grid>
 
     </Grid>
 

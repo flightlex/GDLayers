@@ -10,6 +10,11 @@ namespace GdLayers;
 [DependencyInjectionService(ImplementationType = typeof(LocalLevelsService))]
 public sealed partial class App : Application
 {
+    public App()
+    {
+        DispatcherUnhandledException += App_DispatcherUnhandledException;
+    }
+
     public static new App Current => (App)Application.Current;
     public new MainWindow MainWindow
     {
@@ -29,5 +34,11 @@ public sealed partial class App : Application
         MainWindow.Show();
 
         base.OnStartup(e);
+    }
+
+    private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+    {
+        e.Handled = true;
+        MessageBoxUtils.ShowError(e.Exception.Message);
     }
 }

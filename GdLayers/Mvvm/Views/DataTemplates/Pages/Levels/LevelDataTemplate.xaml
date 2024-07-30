@@ -28,7 +28,7 @@
         CornerRadius="4">
 
         <Border.BorderBrush>
-            <LinearGradientBrush StartPoint="0 0.5" EndPoint="1 0.5">
+            <LinearGradientBrush StartPoint="0 0" EndPoint="1 1">
                 <GradientStop Offset="0" Color="{StaticResource Orange}" />
                 <GradientStop Offset="0" Color="{StaticResource Orange}" />
                 <GradientStop Offset="0" Color="Transparent" />
@@ -101,7 +101,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="0.5*" />
             </Grid.ColumnDefinitions>
 
             <!--  Index  -->
@@ -126,10 +126,10 @@
                 HorizontalAlignment="Left"
                 FontWeight="Bold">
 
-                <Run Text="{Binding ObjectCount, FallbackValue='69', Mode=OneWay}" />
                 <Run
                     Foreground="{StaticResource WhiteGrayBrush}"
-                    Text="obj" />
+                    Text="Objects" />
+                <Run Text="{Binding ObjectCount, FallbackValue='69', Mode=OneWay}" />
 
             </TextBlock>
 

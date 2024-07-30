@@ -6,6 +6,7 @@
     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
     xmlns:mainWindowViewModels="clr-namespace:GdLayers.Mvvm.ViewModels.Windows.Main"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:utils="clr-namespace:GdLayers.Utils"
     d:DataContext="{d:DesignInstance Type=mainWindowViewModels:CaptionViewModel}"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -19,8 +20,12 @@
         <TextBlock
             FontSize="20"
             FontWeight="Bold"
-            Style="{StaticResource TextBlockGrayHoverStyle}"
-            Text="GDLayers 1.0" />
+            Style="{StaticResource TextBlockGrayHoverStyle}">
+
+            <Run Text="GDLayers" />
+            <Run Text="{x:Static utils:AssemblyUtils.ShortAssemblyVersion}" />
+
+        </TextBlock>
 
     </Button>
 

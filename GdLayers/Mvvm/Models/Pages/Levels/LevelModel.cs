@@ -11,9 +11,13 @@ public sealed partial class LevelModel : ObservableObject
         Index = index;
         Name = levelCreatorModel.Name;
         ObjectCount = levelCreatorModel.CountObject;
+
+        LevelCreatorModel = levelCreatorModel;
     }
 
     public IRelayCommand<LevelModel> ClickCommand { get; set; } = null!;
+
+    public LevelCreatorModel LevelCreatorModel { get; }
 
     public int Index { get; }
     public string? Name { get; }

@@ -89,10 +89,10 @@ public sealed class PageViewControl : StackPanel
 
         // inlines
         var currentPageInline = new Run();
-        currentPageInline.SetBinding(Run.TextProperty, new Binding(nameof(CurrentPageIndex)) { Source = this });
+        currentPageInline.SetBinding(Run.TextProperty, new Binding(nameof(CurrentPageIndex)) { Source = this, Mode = BindingMode.TwoWay });
 
         var lastPageInline = new Run();
-        lastPageInline.SetBinding(Run.TextProperty, new Binding(nameof(LastPageIndex)) { Source = this });
+        lastPageInline.SetBinding(Run.TextProperty, new Binding(nameof(LastPageIndex)) { Source = this, Mode = BindingMode.TwoWay });
 
         var seperatorInline = new Run() { Text = "/" };
 

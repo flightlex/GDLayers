@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,85 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="AnimatedDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\AnimatedDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AnimatedHazards" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\AnimatedHazards.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AnimatedPixelDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\AnimatedPixelDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Collectibles" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\Collectibles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FillerDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\FillerDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GamemodePortals" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\GamemodePortals.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GlowDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\GlowDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GravityPortals" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\GravityPortals.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LaunchingPads" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\LaunchingPads.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NonSolidBlocks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\NonSolidBlocks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NonSolidSpikes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\NonSolidSpikes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Orbs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\Orbs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OtherDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\OtherDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OtherHazards" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\OtherHazards.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OtherPortals" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\OtherPortals.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OutlineDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\OutlineDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="PixelDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\PixelDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Saws" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\Saws.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SizePortals" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\SizePortals.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SolidBlocks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\SolidBlocks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SolidSpikes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\SolidSpikes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SortedTypes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Data\SortedTypes.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="SpecialBlocks" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\SpecialBlocks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SpeedModifiers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\SpeedModifiers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Triggers" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Media\ObjectTypeList\Triggers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

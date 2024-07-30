@@ -39,6 +39,41 @@
     </Style>
 
     <Style
+        x:Key="IconImageSecondarytyle"
+        BasedOn="{StaticResource BaseStyle}"
+        TargetType="{x:Type fa:IconImage}">
+
+        <Setter Property="Foreground" Value="{StaticResource WhiteGrayBrush}" />
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Trigger.EnterActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                                Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"
+                                To="{StaticResource White}"
+                                Duration="0:0:0.15" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.EnterActions>
+
+                <Trigger.ExitActions>
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation
+                                Storyboard.TargetProperty="Foreground.(SolidColorBrush.Color)"
+                                To="{StaticResource WhiteGray}"
+                                Duration="0:0:0.15" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </Trigger.ExitActions>
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style
         BasedOn="{StaticResource IconImageDefaultStyle}"
         TargetType="{x:Type fa:IconImage}" />
 

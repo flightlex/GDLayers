@@ -1,6 +1,7 @@
 ﻿using GdLayers.Attributes;
 using GdLayers.Mvvm.Models.Pages.Levels;
 using GdLayers.Services;
+using GeometryDashAPI.Data.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -28,5 +29,15 @@ public sealed class LevelsService
             models[index] = new(level, ++index);
 
         return models;
+    }
+    public async Task SaveLevelsAsync()
+    {
+        await _localLevelsService.SaveLocalLevels();
+    }
+
+
+    public LevelCreatorModel GetLevel(int index)
+    {
+        return _localLevelsService.GetLevel(index);
     }
 }

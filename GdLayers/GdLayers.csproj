@@ -25,6 +25,7 @@
     <Page Remove="Properties\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Resources\Data\SortedTypes.json" />
     <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-Bold.ttf" />
     <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-BoldItalic.ttf" />
     <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-ExtraBold.ttf" />
@@ -41,10 +42,39 @@
     <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-SemiBoldItalic.ttf" />
     <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-Thin.ttf" />
     <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-ThinItalic.ttf" />
+    <None Remove="Resources\Media\BackgroundTexture.jpg" />
     <None Remove="Resources\Media\DoubeRing.svg" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="Costura.Fody" Version="5.7.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
@@ -74,6 +104,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Data\SortedTypes.json" />
     <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-Bold.ttf" />
     <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-BoldItalic.ttf" />
     <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-ExtraBold.ttf" />
@@ -90,6 +121,7 @@
     <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-SemiBoldItalic.ttf" />
     <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-Thin.ttf" />
     <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-ThinItalic.ttf" />
+    <Resource Include="Resources\Media\BackgroundTexture.jpg" />
     <Resource Include="Resources\Media\DoubeRing.svg">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>

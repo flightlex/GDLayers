@@ -14,7 +14,7 @@
     mc:Ignorable="d">
 
     <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
+        <i:EventTrigger EventName="Initialized">
             <i:InvokeCommandAction Command="{Binding RefreshLevelsCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
@@ -26,35 +26,81 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <StackPanel
-            HorizontalAlignment="Left"
-            Orientation="Horizontal">
+        <Grid>
 
-            <!--  Text  -->
-            <TextBlock
+            <StackPanel
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                FontSize="22"
-                FontWeight="Medium"
-                Foreground="#FFFFFF"
-                Text="Choose level to continue" />
+                Orientation="Horizontal">
 
-            <!--  Search Box  -->
-            <controls:PlaceholderTextBox
-                Width="150"
-                Margin="20,0,0,0"
-                Placeholder="Search"
-                Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" />
+                <!--  Text  -->
+                <TextBlock
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    FontSize="22"
+                    FontWeight="Medium"
+                    Foreground="#FFFFFF"
+                    Text="Choose level to continue" />
 
-            <!--  Level Page View  -->
-            <controls:PageViewControl
-                Height="20"
-                Margin="20,0,0,0"
-                CurrentPageIndex="{Binding CurrentPageIndex}"
-                LastPageIndex="{Binding LastPageIndex}"
-                PageChangedCommand="{Binding PageChangedCommand}" />
+                <!--  Search Box  -->
+                <controls:PlaceholderTextBox
+                    Width="150"
+                    Margin="20,0,0,0"
+                    Placeholder="Search"
+                    Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" />
 
-        </StackPanel>
+                <!--  Level Page View  -->
+                <controls:PageViewControl
+                    Height="20"
+                    Margin="20,0,0,0"
+                    CurrentPageIndex="{Binding CurrentPageIndex, Mode=TwoWay}"
+                    LastPageIndex="{Binding LastPageIndex, Mode=TwoWay}"
+                    PageChangedCommand="{Binding PageChangedCommand}" />
+
+            </StackPanel>
+
+            <StackPanel
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Orientation="Horizontal">
+
+                <!--  Refresh Button  -->
+                <Button
+                    HorizontalAlignment="Right"
+                    Command="{Binding RefreshLevelsCommand}"
+                    Content="Refresh" />
+
+                <!--  Continue Button  -->
+                <Button
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Right"
+                    Command="{Binding ContinueCommand}"
+                    Content="Continue"
+                    IsEnabled="{Binding CanBeContinued}">
+
+                    <!--  Loading Level State  -->
+                    <i:Interaction.Triggers>
+                        <i:DataTrigger
+                            Binding="{Binding IsLoadingLevel}"
+                            Value="True">
+                            <i:ChangePropertyAction
+                                PropertyName="Content"
+                                Value="Loading level..." />
+                        </i:DataTrigger>
+
+                        <i:DataTrigger
+                            Binding="{Binding IsLoadingLevel}"
+                            Value="False">
+                            <i:ChangePropertyAction
+                                PropertyName="Content"
+                                Value="Continue" />
+                        </i:DataTrigger>
+                    </i:Interaction.Triggers>
+
+                </Button>
+
+            </StackPanel>
+
+        </Grid>
 
         <!--  Level View  -->
         <ListView

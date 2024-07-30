@@ -4,6 +4,7 @@
 
     <Style
         x:Key="ButtonTransparentStyle"
+        BasedOn="{StaticResource BaseStyle}"
         TargetType="{x:Type Button}">
 
         <Setter Property="Background" Value="Transparent" />
@@ -11,7 +12,9 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Grid Background="{TemplateBinding Background}">
+                    <Grid
+                        Margin="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}">
 
                         <ContentPresenter
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -23,5 +26,64 @@
         </Setter>
 
     </Style>
+
+    <Style
+        x:Key="ButtonDefaultStyle"
+        BasedOn="{StaticResource BaseStyle}"
+        TargetType="{x:Type Button}">
+
+        <Setter Property="Padding" Value="10,5" />
+        <Setter Property="Background" Value="{StaticResource SecondaryDarkBrush}" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        CornerRadius="4">
+
+                        <ContentPresenter
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                            To="{StaticResource PrimaryGray}"
+                                            Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation
+                                            Storyboard.TargetProperty="Background.(SolidColorBrush.Color)"
+                                            To="{StaticResource SecondaryDark}"
+                                            Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style
+        BasedOn="{StaticResource ButtonDefaultStyle}"
+        TargetType="{x:Type Button}" />
 
 </ResourceDictionary>

@@ -19,4 +19,21 @@ public static class CollectionExtensions
 
         return result;
     }
+
+    public static bool HasDuplicates<T, TKey>(this IEnumerable<T> source, Func<T, TKey> predicate)
+    {
+        if (source == null) throw new ArgumentNullException(nameof(source));
+        if (predicate == null) throw new ArgumentNullException(nameof(predicate));
+
+        var seenKeys = new HashSet<TKey>();
+        foreach (var item in source)
+        {
+            var key = predicate(item);
+            if (!seenKeys.Add(key))
+            {
+                return true; // Duplicate found
+            }
+        }
+        return false; // No duplicates found
+    }
 }

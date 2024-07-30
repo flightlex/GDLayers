@@ -17,7 +17,6 @@
                         Margin="8,0,-2,0"
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="0"
                         CornerRadius="4" />
                 </ControlTemplate>
             </Setter.Value>
@@ -27,33 +26,37 @@
     <ControlTemplate
         x:Key="VerticalScrollBar"
         TargetType="{x:Type ScrollBar}">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition MaxHeight="0" />
-                <RowDefinition Height="0.00001*" />
-                <RowDefinition MaxHeight="0" />
-            </Grid.RowDefinitions>
-            <Border
-                Grid.RowSpan="3"
-                Background="Transparent"
-                CornerRadius="2" />
-        </Grid>
+
+        <Track
+            Name="PART_Track"
+            IsDirectionReversed="true">
+            <Track.Thumb>
+                <Thumb
+                    Margin="1,0,1,0"
+                    Background="{StaticResource SecondaryDarkBrush}"
+                    Style="{StaticResource ScrollBarThumb}" />
+            </Track.Thumb>
+        </Track>
+
     </ControlTemplate>
     <ControlTemplate
         x:Key="HorizontalScrollBar"
         TargetType="{x:Type ScrollBar}">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition MaxWidth="18" />
-                <ColumnDefinition Width="0.00001*" />
-                <ColumnDefinition MaxWidth="18" />
-            </Grid.ColumnDefinitions>
-            <Border
-                Grid.ColumnSpan="3"
-                Background="#F0F0F0"
-                CornerRadius="2" />
-        </Grid>
+
+        <Track
+            Name="PART_Track"
+            IsDirectionReversed="False">
+            <Track.Thumb>
+                <Thumb
+                    Margin="0,1,0,1"
+                    Background="#bebebe"
+                    BorderBrush="#bebebe"
+                    Style="{StaticResource ScrollBarThumb}" />
+            </Track.Thumb>
+        </Track>
+
     </ControlTemplate>
+
     <Style
         x:Key="{x:Type ScrollBar}"
         TargetType="{x:Type ScrollBar}">
@@ -71,44 +74,6 @@
                 <Setter Property="Template" Value="{StaticResource VerticalScrollBar}" />
             </Trigger>
         </Style.Triggers>
-    </Style>
-
-    <Style
-        x:Key="FavsScrollViewer"
-        TargetType="{x:Type ScrollViewer}">
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ScrollViewer}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <ScrollContentPresenter Grid.Column="1" />
-                        <ScrollBar
-                            Name="PART_VerticalScrollBar"
-                            Maximum="{TemplateBinding ScrollableHeight}"
-                            ViewportSize="{TemplateBinding ViewportHeight}"
-                            Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
-                            Value="{TemplateBinding VerticalOffset}" />
-                        <ScrollBar
-                            Name="PART_HorizontalScrollBar"
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Maximum="{TemplateBinding ScrollableWidth}"
-                            Orientation="Horizontal"
-                            ViewportSize="{TemplateBinding ViewportWidth}"
-                            Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
-                            Value="{TemplateBinding HorizontalOffset}" />
-                    </Grid>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
     </Style>
 
 </ResourceDictionary>

@@ -4,9 +4,11 @@ using GdLayers.Attributes;
 using GdLayers.Extensions;
 using GdLayers.Mvvm.Models.Pages.Levels;
 using GdLayers.Mvvm.Services.Pages.Levels;
+using GdLayers.Mvvm.ViewModels.Windows;
+using GdLayers.Utils;
+using GeometryDashAPI.Levels;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
@@ -17,8 +19,8 @@ public sealed partial class LevelsViewModel : ObservableObject
 {
     private readonly LevelsService _levelsService;
 
-    private List<IEnumerable<LevelModel>> _chunkedLevels;
-    private LevelModel _selectedLevel = null!;
+    private List<IEnumerable<LevelModel>> _chunkedLevels = null!;
+    private LevelModel? _selectedLevel;
 
     public LevelsViewModel(LevelsService levelsService)
     {
@@ -27,6 +29,12 @@ public sealed partial class LevelsViewModel : ObservableObject
         _levelCollectionView = CollectionViewSource.GetDefaultView(LevelModels);
         _levelCollectionView.Filter = OnFilter;
     }
+
+    public bool CanBeContinued => _selectedLevel is not null && !IsLoadingLevel;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(CanBeContinued))]
+    private bool _isLoadingLevel;
 
     [ObservableProperty]
     private int _currentPageIndex, _lastPageIndex;
@@ -58,20 +66,29 @@ public sealed partial class LevelsViewModel : ObservableObject
     [RelayCommand]
     private async Task RefreshLevels()
     {
-        var levels = await _levelsService.GetLevelsAsync();
+        LevelModels.Clear();
 
+        var levels = await _levelsService.GetLevelsAsync();
         foreach (var level in levels)
             level.ClickCommand = LevelClickedCommand;
 
+        // resetting selected level
+        _selectedLevel = null;
+
+        // creaing chunks
         _chunkedLevels = levels.SplitIntoChunks(50);
 
-        // indirect pushing items coz of performance :)
-        LevelModels.AddRange(_chunkedLevels.First());
-
+        // indexes
         LastPageIndex = _chunkedLevels.Count;
         CurrentPageIndex = 1;
 
+        // adding
+        LevelModels.AddRange(_chunkedLevels[CurrentPageIndex - 1]);
+
+        // refreshing
         OnPropertyChanged(nameof(LevelModels));
+        OnPropertyChanged(nameof(CanBeContinued));
+
         LevelCollectionView.Refresh();
     }
 
@@ -90,16 +107,55 @@ public sealed partial class LevelsViewModel : ObservableObject
     {
         if (_selectedLevel == level)
         {
-            _selectedLevel = null!;
+            _selectedLevel = null;
             level.IsSelected = false;
+
+            OnPropertyChanged(nameof(CanBeContinued));
             return;
         }
 
-        if (_selectedLevel is not null)
+        else if (_selectedLevel is not null)
             _selectedLevel.IsSelected = false;
 
         _selectedLevel = level;
         level.IsSelected = true;
+
+        OnPropertyChanged(nameof(CanBeContinued));
+    }
+
+    [RelayCommand]
+    private async Task OnContinue()
+    {
+        IsLoadingLevel = true;
+
+        Level level = null!;
+        await Task.Run(delegate
+        {
+            level = _selectedLevel!.LevelCreatorModel.LoadLevel();
+        });
+
+        // worst approach known to mankind but i am so nonchawant and my paws awe fuwwiest :3 (idk any better approach at the moment)
+        var mainVm = DependencyInjectionUtils.GetRequiredService<MainViewModel>();
+        var viewModel = new LayersViewModel(_selectedLevel!, level) { SaveLevelCommand = SaveLevelCommand };
+
+        mainVm.CurrentViewModel = viewModel;
+
+        _selectedLevel = null;
+        IsLoadingLevel = false;
+    }
+
+    [RelayCommand]
+    private async Task OnSaveLevel((LevelModel levelModel, Level level) tuple)
+    {
+        await Task.Run(delegate
+        {
+            _levelsService.GetLevel(tuple.levelModel.Index - 1).SaveLevel(tuple.level);
+        });
+
+        await _levelsService.SaveLevelsAsync();
+
+        var mainVm = DependencyInjectionUtils.GetRequiredService<MainViewModel>();
+        mainVm.CurrentViewModel = this;
     }
 
     private bool OnFilter(object obj)
