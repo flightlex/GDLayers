@@ -6,6 +6,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>GdLayers</AssemblyTitle>
     <Product>GdLayers</Product>
+	<Version>1.0.1.0</Version>
     <Copyright>Copyright ©  2024</Copyright>
 	<Nullable>enable</Nullable>
     <OutputPath>bin\$(Configuration)\</OutputPath>

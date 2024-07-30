@@ -6,6 +6,7 @@ using GdLayers.Mvvm.Models.Pages.Levels;
 using GdLayers.Mvvm.ViewModels.Windows;
 using GdLayers.Utils;
 using GeometryDashAPI.Levels;
+using GeometryDashAPI.Levels.GameObjects.Triggers;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -157,12 +158,9 @@ public sealed partial class LayersViewModel : ObservableObject
     private async Task OnApply()
     {
         if (ProcessUtils.ProcessExists("GeometryDash"))
-        {
             MessageBoxUtils.ShowError("You cannot apply and save while your game is running");
-            return;
-        }
 
-        if (Layers.Any(x => x.LayerIndex < -1 || x.LayerIndex > 999))
+        else if (Layers.Any(x => x.LayerIndex < -1 || x.LayerIndex > 999))
             MessageBoxUtils.ShowError("Layer indexes must be between 0 and 999");
 
         else if (Layers.HasDuplicates(x => x.LayerIndex))

@@ -13,8 +13,10 @@ public static class AssemblyUtils
 
         AssemblyVersion = _executingAssembly.GetName().Version;
         ShortAssemblyVersion = $"{AssemblyVersion.Major}.{AssemblyVersion.Minor}";
+        MediumAssemblyVersion = $"{AssemblyVersion.Major}.{AssemblyVersion.Minor}.{AssemblyVersion.Build}";
     }
 
     public static Version AssemblyVersion { get; }
     public static string ShortAssemblyVersion { get; }
+    public static string MediumAssemblyVersion { get; }
 }

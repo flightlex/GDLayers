@@ -23,7 +23,7 @@
             Style="{StaticResource TextBlockGrayHoverStyle}">
 
             <Run Text="GDLayers" />
-            <Run Text="{x:Static utils:AssemblyUtils.ShortAssemblyVersion}" />
+            <Run Text="{x:Static utils:AssemblyUtils.MediumAssemblyVersion}" />
 
         </TextBlock>
 
