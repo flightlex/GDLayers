@@ -24,9 +24,6 @@
                 <!--  Resources/DataTemplates  -->
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/DataTemplates/ViewModelsDataTemplates.xaml" />
 
-                <!--  Resources/SvgImages  -->
-                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SvgImages/DoubleRing.xaml" />
-
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

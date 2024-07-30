@@ -33,7 +33,7 @@ public sealed partial class MainViewModel : ObservableObject
     {
         if (window.WindowState == WindowState.Maximized)
             window.WindowState = WindowState.Normal;
-        else
-            window.WindowState = WindowState.Maximized;
+        //else
+        //    window.WindowState = WindowState.Maximized;
     }
 }

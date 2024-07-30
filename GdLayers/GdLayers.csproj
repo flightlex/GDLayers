@@ -11,6 +11,7 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
 	<LangVersion>latest</LangVersion>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\Media\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -43,7 +44,6 @@
     <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-Thin.ttf" />
     <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-ThinItalic.ttf" />
     <None Remove="Resources\Media\BackgroundTexture.jpg" />
-    <None Remove="Resources\Media\DoubeRing.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\Resources.Designer.cs">
@@ -56,6 +56,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\Media\Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -122,8 +125,5 @@
     <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-Thin.ttf" />
     <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-ThinItalic.ttf" />
     <Resource Include="Resources\Media\BackgroundTexture.jpg" />
-    <Resource Include="Resources\Media\DoubeRing.svg">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 </Project>
