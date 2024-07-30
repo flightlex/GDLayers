@@ -6,7 +6,9 @@ using GdLayers.Mvvm.Models.Pages.Levels;
 using GdLayers.Mvvm.ViewModels.Windows;
 using GdLayers.Utils;
 using GeometryDashAPI.Levels;
+using GeometryDashAPI.Levels.Enums;
 using GeometryDashAPI.Levels.GameObjects.Triggers;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -170,19 +172,19 @@ public sealed partial class LayersViewModel : ObservableObject
         {
             IsApplying = true;
 
-            // foreaching every layer
-            foreach (var layer in Layers)
+            //// foreaching every layer
+            Parallel.ForEach(Layers, layer =>
             {
-                // foreaching every object type list corresponding to that specific layer
                 foreach (var gdObjectTypeListLayer in layer.GdObjectTypeListLayerModels)
                 {
-                    // foreaching every id of the object type list
-                    foreach (var id in gdObjectTypeListLayer.GdObjectTypeList.ObjectCollection)
+                    // Use Partitioner to split the work among threads
+                    var partitioner = Partitioner.Create(gdObjectTypeListLayer.GdObjectTypeList.ObjectCollection);
+                    Parallel.ForEach(partitioner, id =>
                     {
                         ApplyEditorLayerForObjectId(layer.Level.Blocks, id, layer.LayerIndex);
-                    }
+                    });
                 }
-            }
+            });
 
             await SaveLevelCommand.ExecuteAsync((_levelModel, _level));
 
@@ -215,7 +217,10 @@ public sealed partial class LayersViewModel : ObservableObject
         foreach (var block in blockList)
         {
             if (block.Id == objectId)
+            {
                 block.EditorL = (short)layerIndex;
+                block.EditorL2 = 0;
+            }
         }
     }
 }
