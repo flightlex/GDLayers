@@ -91,7 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="GeometryDashAPI">
-      <HintPath>..\..\..\..\Desktop\ForkedGeometryDashAPI\GeometryDashAPI\bin\Release\netstandard\publish\GeometryDashAPI.dll</HintPath>
+      <HintPath>..\Includes\GeometryDashAPI\GeometryDashAPI.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Windows.Forms" />

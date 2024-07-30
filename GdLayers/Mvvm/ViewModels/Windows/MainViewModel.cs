@@ -27,4 +27,13 @@ public sealed partial class MainViewModel : ObservableObject
     {
         window.DragMove();
     }
+
+    [RelayCommand]
+    private void ToggleSize(Window window)
+    {
+        if (window.WindowState == WindowState.Maximized)
+            window.WindowState = WindowState.Normal;
+        else
+            window.WindowState = WindowState.Maximized;
+    }
 }

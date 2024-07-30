@@ -24,6 +24,12 @@
                 Command="{Binding DragMoveCommand}"
                 CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
         </i:EventTrigger>
+
+        <i:EventTrigger EventName="MouseDoubleClick">
+            <i:InvokeCommandAction
+                Command="{Binding ToggleSizeCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}" />
+        </i:EventTrigger>
     </i:Interaction.Triggers>
 
     <Grid>

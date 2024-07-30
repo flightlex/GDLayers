@@ -14,7 +14,7 @@
     mc:Ignorable="d">
 
     <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Initialized">
+        <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding RefreshLevelsCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
