@@ -20,6 +20,7 @@
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/ListViews.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/TextBoxes.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/ScrollBar.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/SharedStyles/Comboboxes.xaml" />
 
                 <!--  Resources/DataTemplates  -->
                 <ResourceDictionary Source="pack://application:,,,/GdLayers;component/Resources/DataTemplates/ViewModelsDataTemplates.xaml" />

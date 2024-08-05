@@ -1,135 +1,137 @@
 ﻿using GdLayers.Attributes;
 using GdLayers.Constants;
+using System;
 
 namespace GdLayers.Enums;
 
-public enum ObjectType : byte
+[Flags]
+public enum GdObjectType : uint
 {
     // blocks
     [Title("Solid Blocks")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "SolidBlocks")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "SolidBlocks_Description")]
-    SolidBlock,
+    SolidBlock = 1,
 
     [Title("Non-Solid Blocks")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "NonSolidBlocks")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "NonSolidBlocks_Description")]
-    NonSolidBlock,
+    NonSolidBlock = 2,
 
     // spikes
     [Title("Solid Spikes")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "SolidSpikes")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "SolidSpikes_Description")]
-    SolidSpike,
+    SolidSpike = 4,
 
     [Title("Non-Solid Spikes")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "NonSolidSpikes")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "NonSolidSpikes_Description")]
-    NonSolidSpike,
+    NonSolidSpike = 8,
 
     // hazards
     [Title("Animated Hazards")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "AnimatedHazards")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "AnimatedHazards_Description")]
-    AnimatedHazard,
+    AnimatedHazard = 16,
 
     [Title("Other Hazards")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "OtherHazards")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "OtherHazards_Description")]
-    OtherHazard,
+    OtherHazard = 32,
 
     // deco
     [Title("Outline Decorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "OutlineDecorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "OutlineDecorations_Description")]
-    OutlineDecoration,
+    OutlineDecoration = 64,
 
     [Title("Filler Decorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "FillerDecorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "FillerDecorations_Description")]
-    FillerDecoration,
+    FillerDecoration = 128,
 
     [Title("Animated Decorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "AnimatedDecorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "AnimatedDecorations_Description")]
-    AnimatedDecoration,
+    AnimatedDecoration = 256,
 
     [Title("Pixel Decorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "PixelDecorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "PixelDecorations_Description")]
-    PixelDecoration,
+    PixelDecoration = 512,
 
     [Title("Animated Pixel Decorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "AnimatedPixelDecorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "AnimatedPixelDecorations_Description")]
-    AnimatedPixelDecoration,
+    AnimatedPixelDecoration = 1024,
 
     [Title("Glow Decorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "GlowDecorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "GlowDecorations_Description")]
-    GlowDecoration,
+    GlowDecoration = 2048,
 
     [Title("Other Decorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "OtherDecorations")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "OtherDecorations_Description")]
-    OtherDecoration,
+    OtherDecoration = 4096,
 
     // gameplay
     [Title("Launching Pads")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "LaunchingPads")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "LaunchingPads_Description")]
-    LaunchingPad,
+    LaunchingPad = 8_192,
 
     [Title("Orbs")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "Orbs")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "Orbs_Description")]
-    Orb,
+    Orb = 16_384,
 
     [Title("Gravity Portals")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "GravityPortals")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "GravityPortals_Description")]
-    GravityPortal,
+    GravityPortal = 32_768,
 
     [Title("Gamemode Portals")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "GamemodePortals")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "GamemodePortals_Description")]
-    GamemodePortal,
+    GamemodePortal = 65_536,
 
     [Title("Size Portals")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "SizePortals")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "SizePortals_Description")]
-    SizePortal,
+    SizePortal = 131_072,
 
     [Title("Other Portals")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "OtherPortals")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "OtherPortals_Description")]
-    OtherPortal,
+    OtherPortal = 262_144,
 
     // other gameplay
     [Title("Speed Modifiers")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "SpeedModifiers")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "SpeedModifiers_Description")]
-    SpeedModifier,
+    SpeedModifier = 524_288,
 
     [Title("Special Blocks")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "SpecialBlocks")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "SpecialBlocks_Description")]
-    SpecialBlock,
+    SpecialBlock = 1_048_576,
 
     // saw
     [Title("Saws")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "Saws")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "Saws_Description")]
-    Saw,
+    Saw = 2_097_152,
 
     // other
     [Title("Collectible Objects")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "Collectibles")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "Collectibles_Description")]
-    Collectible,
+    Collectible = 4_194_304,
 
     [Title("Triggers")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Image, "Triggers")]
     [ResourceReference(ResourceTypeConstants.GdObjectGroup.Description, "Triggers_Description")]
-    Trigger
+    Trigger = 8_388_608
 }

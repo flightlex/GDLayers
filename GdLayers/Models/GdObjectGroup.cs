@@ -13,14 +13,14 @@ public sealed class GdObjectGroup
         ObjectIds = null!;
     }
 
-    public GdObjectGroup(List<int> ids, ObjectType type)
+    public GdObjectGroup(List<int> ids, GdObjectType type)
     {
         ObjectIds = ids;
         ObjectType = type;
     }
 
     [JsonProperty(Order = 0)]
-    public ObjectType ObjectType { get; set; }
+    public GdObjectType ObjectType { get; set; }
 
     [JsonProperty(Order = 3)]
     public List<int> ObjectIds { get; set; }
@@ -30,5 +30,5 @@ public sealed class GdObjectGroup
     public int ObjectCount => ObjectIds.Count;
 
     [JsonProperty(Order = 1)]
-    public string? ObjectTypeName => Enum.GetName(typeof(ObjectType), ObjectType);
+    public string? ObjectTypeName => Enum.GetName(typeof(GdObjectType), ObjectType);
 }

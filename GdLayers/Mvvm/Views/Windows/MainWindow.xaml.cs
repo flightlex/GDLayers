@@ -20,7 +20,7 @@ public sealed partial class MainWindow : Window
     {
         loadingStateService.StateChanged += LoadingStateChanged;
         focusStateService.StateChanged += FocusStateService_StateChanged;
-
+        
         InitializeComponent();
     }
 

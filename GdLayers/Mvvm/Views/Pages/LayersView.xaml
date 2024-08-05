@@ -76,12 +76,11 @@
             Margin="20,0">
 
             <!--  Auto Preset  -->
-            <!--  NOT IMPLEMENTED YET  -->
             <Button
                 HorizontalAlignment="Left"
                 VerticalAlignment="Center"
-                Content="Preset - Auto"
-                Visibility="Collapsed" />
+                Command="{Binding ShowPresetMenuCommand}"
+                Content="Preset Menu" />
 
             <StackPanel
                 HorizontalAlignment="Right"

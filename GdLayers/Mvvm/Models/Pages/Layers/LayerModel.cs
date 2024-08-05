@@ -13,12 +13,16 @@ namespace GdLayers.Mvvm.Models.Pages.Layers;
 
 public sealed partial class LayerModel : ObservableObject
 {
+    private readonly BlockList _blocks;
     private CancellationTokenSource _objectContingCancellationTokenSource = null!;
 
-    public LayerModel(Level level)
+    public LayerModel(BlockList blockList, int defaultIndex)
     {
-        Level = level;
+        _blocks = blockList;
         GdObjectGroupLayerModels.CollectionChanged += GdObjectGroupLayerModels_CollectionChanged;
+
+        _layerIndex = defaultIndex;
+        _rawLayerIndex = defaultIndex.ToString();
     }
 
     ~LayerModel()
@@ -26,13 +30,27 @@ public sealed partial class LayerModel : ObservableObject
         GdObjectGroupLayerModels.CollectionChanged -= GdObjectGroupLayerModels_CollectionChanged; ;
     }
 
-    public Level Level { get; }
-
     public IRelayCommand<GdObjectGroupModel> ReturnGdObjectGroupModelBackCommand { get; set; } = null!;
     public IRelayCommand<LayerModel> RemoveCommand { get; set; } = null!;
 
-    [ObservableProperty]
     private int _layerIndex;
+    public int LayerIndex => _layerIndex;
+
+    private string _rawLayerIndex;
+    public string RawLayerIndex
+    {
+        get => _rawLayerIndex;
+        set
+        {
+            if (value == _rawLayerIndex) 
+                return;
+
+            _rawLayerIndex = value;
+            int.TryParse(_rawLayerIndex, out _layerIndex);
+
+            OnPropertyChanged();
+        }
+    }
 
     [ObservableProperty]
     private ObservableCollection<GdObjectGroupLayerModel> _gdObjectGroupLayerModels = [];
@@ -59,14 +77,7 @@ public sealed partial class LayerModel : ObservableObject
         if (data is null)
             return;
 
-        data.ConfirmDrop();
-
-        var newModel = new GdObjectGroupLayerModel(data)
-        {
-            RemoveCommand = RemoveGdObjectGroupLayerModelCommand
-        };
-
-        GdObjectGroupLayerModels.Add(newModel);
+        AddGdObjectGroupLayer(data);
     }
 
     [RelayCommand]
@@ -75,6 +86,18 @@ public sealed partial class LayerModel : ObservableObject
         GdObjectGroupLayerModels.Remove(gdObjectGroupLayerModel);
         ReturnGdObjectGroupModelBackCommand.Execute(gdObjectGroupLayerModel.GdObjectGroupModel);
     }
+
+    public void AddGdObjectGroupLayer(GdObjectGroupModel gdObjectGroupModel)
+    {
+        gdObjectGroupModel.Erase();
+        var newModel = new GdObjectGroupLayerModel(gdObjectGroupModel)
+        {
+            RemoveCommand = RemoveGdObjectGroupLayerModelCommand
+        };
+
+        GdObjectGroupLayerModels.Add(newModel);
+    }
+
     private void GdObjectGroupLayerModels_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
         OnPropertyChanged(nameof(TotalObjects));
@@ -92,7 +115,7 @@ public sealed partial class LayerModel : ObservableObject
             {
                 int localSum = 0;
                 foreach (var  id in gdObjectType.GdObjectGroup.ObjectIds)
-                    localSum += Level.Blocks.Count(x => x.Id == id);
+                    localSum += _blocks.Count(x => x.Id == id);
 
                 parallelSum.Add(localSum);
 

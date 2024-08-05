@@ -6,7 +6,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>GdLayers</AssemblyTitle>
     <Product>GdLayers</Product>
-	<Version>1.0.2.0</Version>
+	<Version>1.1.0.0</Version>
     <Copyright>Copyright ©  2024</Copyright>
 	<Nullable>enable</Nullable>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -27,6 +27,7 @@
     <Page Remove="Properties\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Resources\Data\AllPresets.json" />
     <None Remove="Resources\Data\SortedTypes.json" />
     <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-Bold.ttf" />
     <None Remove="Resources\Fonts\JetBrainsMono\JetBrainsMono-BoldItalic.ttf" />
@@ -108,6 +109,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Data\AllPresets.json" />
     <Resource Include="Resources\Data\SortedTypes.json" />
     <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-Bold.ttf" />
     <Resource Include="Resources\Fonts\JetBrainsMono\JetBrainsMono-BoldItalic.ttf" />

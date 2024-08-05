@@ -1,5 +1,8 @@
 ﻿using GdLayers.Attributes;
+using GdLayers.Enums;
+using GdLayers.Models;
 using GdLayers.Mvvm.Models.Pages.Layers;
+using GdLayers.Mvvm.ViewModels.Pages;
 using GeometryDashAPI.Levels;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,5 +36,26 @@ public sealed class LayersService
         }
 
         return nextFree;
+    }
+    public LayerPresetModel CreatePreset(LayersViewModel layersViewModel)
+    {
+        LayerPresetModel preset = new();
+        
+        foreach (var layer in layersViewModel.Layers)
+        {
+            GdObjectType types = 0;
+
+            foreach (var type in layer.GdObjectGroupLayerModels)
+                types |= type.GdObjectGroup.ObjectType;
+
+            var newLayer = new LayerPresetModel.Layer();
+            newLayer.LayerIndex = layer.LayerIndex;
+            newLayer.ObjectTypes = types;
+
+            preset.Layers.Add(newLayer);
+        }
+
+        preset.Layers.Sort();
+        return preset;
     }
 }

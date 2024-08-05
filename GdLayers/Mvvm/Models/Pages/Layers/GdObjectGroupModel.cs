@@ -45,7 +45,7 @@ public sealed partial class GdObjectGroupModel : ObservableObject
     {
         DragDrop.DoDragDrop(source, this, DragDropEffects.Move);
     }
-    public void ConfirmDrop()
+    public void Erase()
     {
         RemoveCommand?.Execute(this);
     }

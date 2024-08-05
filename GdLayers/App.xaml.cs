@@ -1,9 +1,14 @@
 ﻿using GdLayers.Attributes;
+using GdLayers.Models;
 using GdLayers.Mvvm.ViewModels.Windows;
 using GdLayers.Mvvm.Views.Windows;
 using GdLayers.Services;
 using GdLayers.Utils;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Text;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace GdLayers;
 
@@ -38,7 +43,6 @@ public sealed partial class App : Application
 
         base.OnStartup(e);
     }
-
     private void AppDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
     {
         e.Handled = true;

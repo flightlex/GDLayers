@@ -1,0 +1,174 @@
+[
+  {
+    "Title": "Simple preset",
+    "Description": "Very basic grouping, Gameplay, Specials, Decorations and Triggers",
+    "LayerCount": 4,
+    "LayerPreset": {
+      "Layers": [
+        {
+          "LayerIndex": 0,
+          "ObjectTypes": 3137589
+        },
+        {
+          "LayerIndex": 1,
+          "ObjectTypes": 5242880
+        },
+        {
+          "LayerIndex": 2,
+          "ObjectTypes": 8138
+        },
+        {
+          "LayerIndex": 3,
+          "ObjectTypes": 8388608
+        }
+      ]
+    }
+  },
+  {
+    "Title": "Advanced preset",
+    "Description": "More detailed grouping, Blocks & Hazards, Gameplay objects, Outlines & Fake objects, Special objects, Animated Decorations, Static Decorations, Glow and Triggers",
+    "LayerCount": 8,
+    "LayerPreset": {
+      "Layers": [
+        {
+          "LayerIndex": 0,
+          "ObjectTypes": 2097205
+        },
+        {
+          "LayerIndex": 1,
+          "ObjectTypes": 1040384
+        },
+        {
+          "LayerIndex": 3,
+          "ObjectTypes": 74
+        },
+        {
+          "LayerIndex": 2,
+          "ObjectTypes": 5242880
+        },
+        {
+          "LayerIndex": 4,
+          "ObjectTypes": 1280
+        },
+        {
+          "LayerIndex": 5,
+          "ObjectTypes": 4736
+        },
+        {
+          "LayerIndex": 6,
+          "ObjectTypes": 2048
+        },
+        {
+          "LayerIndex": 7,
+          "ObjectTypes": 8388608
+        }
+      ]
+    }
+  },
+  {
+
+    "Title": "Full-Seperate preset",
+    "Description": "Has every object type at specific layer",
+    "LayerCount": 24,
+    "LayerPreset": {
+      "Layers": [
+        {
+          "LayerIndex": 0,
+          "ObjectTypes": 1
+        },
+        {
+          "LayerIndex": 1,
+          "ObjectTypes": 4
+        },
+        {
+          "LayerIndex": 2,
+          "ObjectTypes": 2097152
+        },
+        {
+          "LayerIndex": 3,
+          "ObjectTypes": 32
+        },
+        {
+          "LayerIndex": 4,
+          "ObjectTypes": 16
+        },
+        {
+          "LayerIndex": 5,
+          "ObjectTypes": 65536
+        },
+        {
+          "LayerIndex": 6,
+          "ObjectTypes": 32768
+        },
+        {
+          "LayerIndex": 7,
+          "ObjectTypes": 131072
+        },
+        {
+          "LayerIndex": 8,
+          "ObjectTypes": 262144
+        },
+        {
+          "LayerIndex": 9,
+          "ObjectTypes": 16384
+        },
+        {
+          "LayerIndex": 10,
+          "ObjectTypes": 8192
+        },
+        {
+          "LayerIndex": 11,
+          "ObjectTypes": 524288
+        },
+        {
+          "LayerIndex": 12,
+          "ObjectTypes": 4194304
+        },
+        {
+          "LayerIndex": 14,
+          "ObjectTypes": 8
+        },
+        {
+          "LayerIndex": 15,
+          "ObjectTypes": 2
+        },
+        {
+          "LayerIndex": 16,
+          "ObjectTypes": 4096
+        },
+        {
+          "LayerIndex": 17,
+          "ObjectTypes": 128
+        },
+        {
+          "LayerIndex": 18,
+          "ObjectTypes": 512
+        },
+        {
+          "LayerIndex": 19,
+          "ObjectTypes": 64
+        },
+        {
+          "LayerIndex": 20,
+          "ObjectTypes": 256
+        },
+        {
+          "LayerIndex": 21,
+          "ObjectTypes": 1024
+        },
+        {
+          "LayerIndex": 22,
+          "ObjectTypes": 2048
+        },
+        {
+          "LayerIndex": 23,
+          "ObjectTypes": 8388608
+        },
+        {
+          "LayerIndex": 13,
+          "ObjectTypes": 1048576
+        }
+      ]
+    }
+  }
+]

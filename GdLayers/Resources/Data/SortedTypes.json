@@ -1,6 +1,6 @@
 [
   {
-    "ObjectType": 0,
+    "ObjectType": 1,
     "ObjectTypeName": "SolidBlock",
     "ObjectCount": 143,
     "ObjectIds": [
@@ -150,7 +150,7 @@
     ]
   },
   {
-    "ObjectType": 1,
+    "ObjectType": 2,
     "ObjectTypeName": "NonSolidBlock",
     "ObjectCount": 489,
     "ObjectIds": [
@@ -636,7 +636,7 @@
     ]
   },
   {
-    "ObjectType": 2,
+    "ObjectType": 4,
     "ObjectTypeName": "SolidSpike",
     "ObjectCount": 19,
     "ObjectIds": [
@@ -662,7 +662,7 @@
     ]
   },
   {
-    "ObjectType": 3,
+    "ObjectType": 8,
     "ObjectTypeName": "NonSolidSpike",
     "ObjectCount": 4,
     "ObjectIds": [
@@ -673,7 +673,7 @@
     ]
   },
   {
-    "ObjectType": 4,
+    "ObjectType": 16,
     "ObjectTypeName": "AnimatedHazard",
     "ObjectCount": 8,
     "ObjectIds": [
@@ -688,7 +688,7 @@
     ]
   },
   {
-    "ObjectType": 5,
+    "ObjectType": 32,
     "ObjectTypeName": "OtherHazard",
     "ObjectCount": 26,
     "ObjectIds": [
@@ -721,7 +721,7 @@
     ]
   },
   {
-    "ObjectType": 6,
+    "ObjectType": 64,
     "ObjectTypeName": "OutlineDecoration",
     "ObjectCount": 9,
     "ObjectIds": [
@@ -738,7 +738,7 @@
     ]
   },
   {
-    "ObjectType": 7,
+    "ObjectType": 128,
     "ObjectTypeName": "FillerDecoration",
     "ObjectCount": 600,
     "ObjectIds": [
@@ -1344,7 +1344,7 @@
     ]
   },
   {
-    "ObjectType": 8,
+    "ObjectType": 256,
     "ObjectTypeName": "AnimatedDecoration",
     "ObjectCount": 157,
     "ObjectIds": [
@@ -1508,7 +1508,7 @@
     ]
   },
   {
-    "ObjectType": 9,
+    "ObjectType": 512,
     "ObjectTypeName": "PixelDecoration",
     "ObjectCount": 1603,
     "ObjectIds": [
@@ -3118,7 +3118,7 @@
     ]
   },
   {
-    "ObjectType": 10,
+    "ObjectType": 1024,
     "ObjectTypeName": "AnimatedPixelDecoration",
     "ObjectCount": 19,
     "ObjectIds": [
@@ -3144,7 +3144,7 @@
     ]
   },
   {
-    "ObjectType": 11,
+    "ObjectType": 2048,
     "ObjectTypeName": "GlowDecoration",
     "ObjectCount": 46,
     "ObjectIds": [
@@ -3225,7 +3225,7 @@
     ]
   },
   {
-    "ObjectType": 12,
+    "ObjectType": 4096,
     "ObjectTypeName": "OtherDecoration",
     "ObjectCount": 449,
     "ObjectIds": [
@@ -3666,7 +3666,7 @@
     ]
   },
   {
-    "ObjectType": 13,
+    "ObjectType": 8192,
     "ObjectTypeName": "LaunchingPad",
     "ObjectCount": 5,
     "ObjectIds": [
@@ -3678,7 +3678,7 @@
     ]
   },
   {
-    "ObjectType": 14,
+    "ObjectType": 16384,
     "ObjectTypeName": "Orb",
     "ObjectCount": 11,
     "ObjectIds": [
@@ -3696,7 +3696,7 @@
     ]
   },
   {
-    "ObjectType": 15,
+    "ObjectType": 32768,
     "ObjectTypeName": "GravityPortal",
     "ObjectCount": 3,
     "ObjectIds": [
@@ -3706,7 +3706,7 @@
     ]
   },
   {
-    "ObjectType": 16,
+    "ObjectType": 65536,
     "ObjectTypeName": "GamemodePortal",
     "ObjectCount": 8,
     "ObjectIds": [
@@ -3721,7 +3721,7 @@
     ]
   },
   {
-    "ObjectType": 17,
+    "ObjectType": 131072,
     "ObjectTypeName": "SizePortal",
     "ObjectCount": 2,
     "ObjectIds": [
@@ -3730,7 +3730,7 @@
     ]
   },
   {
-    "ObjectType": 18,
+    "ObjectType": 262144,
     "ObjectTypeName": "OtherPortal",
     "ObjectCount": 7,
     "ObjectIds": [
@@ -3744,7 +3744,7 @@
     ]
   },
   {
-    "ObjectType": 19,
+    "ObjectType": 524288,
     "ObjectTypeName": "SpeedModifier",
     "ObjectCount": 5,
     "ObjectIds": [
@@ -3756,7 +3756,7 @@
     ]
   },
   {
-    "ObjectType": 20,
+    "ObjectType": 1048576,
     "ObjectTypeName": "SpecialBlock",
     "ObjectCount": 9,
     "ObjectIds": [
@@ -3772,7 +3772,7 @@
     ]
   },
   {
-    "ObjectType": 21,
+    "ObjectType": 2097152,
     "ObjectTypeName": "Saw",
     "ObjectCount": 26,
     "ObjectIds": [
@@ -3805,7 +3805,7 @@
     ]
   },
   {
-    "ObjectType": 22,
+    "ObjectType": 4194304,
     "ObjectTypeName": "Collectible",
     "ObjectCount": 149,
     "ObjectIds": [
@@ -3958,7 +3958,7 @@
     ]
   },
   {
-    "ObjectType": 23,
+    "ObjectType": 8388608,
     "ObjectTypeName": "Trigger",
     "ObjectCount": 129,
     "ObjectIds": [

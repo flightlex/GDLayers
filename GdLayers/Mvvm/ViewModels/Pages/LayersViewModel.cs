@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using GdLayers.Enums;
 using GdLayers.Extensions;
+using GdLayers.Models;
 using GdLayers.Mvvm.Models.Pages.Layers;
 using GdLayers.Mvvm.Models.Pages.Levels;
 using GdLayers.Mvvm.Services.Navigations;
@@ -116,11 +117,10 @@ public sealed partial class LayersViewModel : ObservableObject
             return;
         }
 
-        var newLayer = new LayerModel(_level)
+        var newLayer = new LayerModel(_level.Blocks, nextFree)
         {
             ReturnGdObjectGroupModelBackCommand = ReturnGdObjectGroupModelBackCommand,
-            RemoveCommand = RemoveLayerModelCommand,
-            LayerIndex = nextFree
+            RemoveCommand = RemoveLayerModelCommand
         };
 
         Layers.Add(newLayer);
@@ -186,13 +186,16 @@ public sealed partial class LayersViewModel : ObservableObject
             IsApplying = true;
 
             //// foreaching every layer
-            Layers.ParallelForEach(layer =>
+            await Task.Run(delegate
             {
-                layer.GdObjectGroupLayerModels.PartitionedParallelForEach(gdObjectGroupLayerModel =>
+                Layers.ParallelForEach(layer =>
                 {
-                    gdObjectGroupLayerModel.GdObjectGroup.ObjectIds.ForEach(id =>
+                    layer.GdObjectGroupLayerModels.PartitionedParallelForEach(gdObjectGroupLayerModel =>
                     {
-                        _layersService.ApplyEditorLayerForObjectId(layer.Level.Blocks, id, layer.LayerIndex);
+                        gdObjectGroupLayerModel.GdObjectGroup.ObjectIds.ForEach(id =>
+                        {
+                            _layersService.ApplyEditorLayerForObjectId(_level.Blocks, id, layer.LayerIndex);
+                        });
                     });
                 });
             });
@@ -200,6 +203,29 @@ public sealed partial class LayersViewModel : ObservableObject
             await SaveLevelCommand.ExecuteAsync((_levelModel, _level));
             IsApplying = false;
         }
+    }
+
+    [RelayCommand]
+    private void OnShowPresetMenu()
+    {
+        _mainFocusStateService.SetState(FocusState.Unfocused);
+
+        var presetService = DiUtils.GetRequiredService<LayerPresetService>();
+
+        var window = new LayerPresetMenuWindow();
+        var viewmodel = new LayerPresetMenuViewModel(this, _layersService, presetService);
+        window.DataContext = viewmodel;
+        window.Owner = DiUtils.GetRequiredService<MainWindow>();
+
+        window.ShowDialog();
+        _mainFocusStateService.SetState(FocusState.Focused);
+
+        var result = viewmodel.GetResult();
+
+        if (result.ResultType == LayerPresetMenuResultType.Cancel || result.ResultType == LayerPresetMenuResultType.Export)
+            return;
+
+        ImportLayerPreset(result.Preset!);
     }
 
 
@@ -224,5 +250,29 @@ public sealed partial class LayersViewModel : ObservableObject
     private void LayersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
         OnPropertyChanged(nameof(CanBeApplied));
+    }
+    private void ImportLayerPreset(LayerPresetModel model)
+    {
+        // removing current preset
+        foreach (var layer in Layers.ToArray()) // cloning
+            layer.RemoveCommand.Execute(layer);
+
+        // importing
+        foreach (var layer in model.Layers)
+        {
+            var newLayer = new LayerModel(_level.Blocks, layer.LayerIndex)
+            {
+                ReturnGdObjectGroupModelBackCommand = ReturnGdObjectGroupModelBackCommand,
+                RemoveCommand = RemoveLayerModelCommand,
+            };
+
+            foreach (var gdObjectGroupModel in GdObjectGroupModels.ToArray())
+            {
+                if (layer.ObjectTypes.HasFlag(gdObjectGroupModel.GdObjectGroup.ObjectType))
+                    newLayer.AddGdObjectGroupLayer(gdObjectGroupModel);
+            }    
+
+            Layers.Add(newLayer);
+        }
     }
 }

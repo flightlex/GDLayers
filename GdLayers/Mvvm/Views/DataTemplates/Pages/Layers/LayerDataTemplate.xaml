@@ -8,6 +8,7 @@
     xmlns:layerModels="clr-namespace:GdLayers.Mvvm.Models.Pages.Layers"
     xmlns:local="clr-namespace:GdLayers.Mvvm.Views.DataTemplates.Pages.Layers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:textBoxBehaviors="clr-namespace:GdLayers.Behaviors.TextBox"
     Height="100"
     d:DataContext="{d:DesignInstance Type=layerModels:LayerModel}"
     d:DesignWidth="800"
@@ -56,10 +57,17 @@
                         Foreground="{StaticResource WhiteGrayBrush}"
                         Text="Layer" />
                     <TextBox
+                        MinWidth="15"
                         Margin="5,0,0,0"
                         Padding="0"
                         Background="Transparent"
-                        Text="{Binding LayerIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=1}" />
+                        Text="{Binding RawLayerIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue=1}">
+
+                        <i:Interaction.Behaviors>
+                            <textBoxBehaviors:IntOnlyBehavior />
+                        </i:Interaction.Behaviors>
+
+                    </TextBox>
 
                 </StackPanel>
 

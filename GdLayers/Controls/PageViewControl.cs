@@ -74,14 +74,14 @@ public sealed class PageViewControl : StackPanel
             Style = transparentStyle,
             Content = previousPageIcon,
         };
-        _previousPageButton.Click += NextPageButtonClick;
+        _previousPageButton.Click += PreviousPageButtonClick;
 
         _nextPageButton = new()
         {
             Style = transparentStyle,
             Content = nextPageIcon
         };
-        _nextPageButton.Click += PreviousPageButtonClick;
+        _nextPageButton.Click += NextPageButtonClick;
 
         // page info
         _pageInfoTextBlock = new();
