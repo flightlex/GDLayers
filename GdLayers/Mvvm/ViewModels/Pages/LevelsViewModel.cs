@@ -1,11 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GdLayers.Attributes;
+using GdLayers.Enums;
 using GdLayers.Extensions;
 using GdLayers.Mvvm.Models.Pages.Levels;
-using GdLayers.Mvvm.Services.Pages.Levels;
-using GdLayers.Mvvm.ViewModels.Windows;
-using GdLayers.Utils;
+using GdLayers.Mvvm.Services.Navigations;
+using GdLayers.Mvvm.Services.Pages;
+using GdLayers.Mvvm.Views.Windows;
+using GdLayers.Services;
 using GeometryDashAPI.Levels;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,17 +16,29 @@ using System.Windows.Data;
 
 namespace GdLayers.Mvvm.ViewModels.Pages;
 
-[DependencyInjectionService]
+[DiService]
 public sealed partial class LevelsViewModel : ObservableObject
 {
     private readonly LevelsService _levelsService;
+    private readonly LayersService _layersService;
+    private readonly MainNavigationService _mainNavigationService;
+    private readonly StateService<MainWindow, FocusState> _mainFocusStateService;
 
     private List<IEnumerable<LevelModel>> _chunkedLevels = null!;
     private LevelModel? _selectedLevel;
 
-    public LevelsViewModel(LevelsService levelsService)
+    private bool _isLoaded;
+
+    public LevelsViewModel(
+        LevelsService levelsService, 
+        LayersService layersService,
+        MainNavigationService mainNavigationService,
+        StateService<MainWindow, FocusState> mainFocusStateService)
     {
         _levelsService = levelsService;
+        _layersService = layersService;
+        _mainNavigationService = mainNavigationService;
+        _mainFocusStateService = mainFocusStateService;
 
         _levelCollectionView = CollectionViewSource.GetDefaultView(LevelModels);
         _levelCollectionView.Filter = OnFilter;
@@ -36,9 +50,11 @@ public sealed partial class LevelsViewModel : ObservableObject
     [NotifyPropertyChangedFor(nameof(CanBeContinued))]
     private bool _isLoadingLevel;
 
+    // pages
     [ObservableProperty]
     private int _currentPageIndex, _lastPageIndex;
 
+    // levels
     [ObservableProperty]
     private ICollectionView _levelCollectionView;
 
@@ -93,7 +109,17 @@ public sealed partial class LevelsViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void PageChanged(int page)
+    private async Task OnLoad()
+    {
+        if (_isLoaded)
+            return;
+
+        _isLoaded = true;
+        await RefreshLevels();
+    }
+
+    [RelayCommand]
+    private void OnPageChanged(int page)
     {
         LevelModels.Clear();
         LevelModels.AddRange(_chunkedLevels[page - 1]);
@@ -134,13 +160,9 @@ public sealed partial class LevelsViewModel : ObservableObject
             level = _selectedLevel!.LevelCreatorModel.LoadLevel();
         });
 
-        // worst approach known to mankind but i am so nonchawant and my paws awe fuwwiest :3 (idk any better approach at the moment)
-        var mainVm = DependencyInjectionUtils.GetRequiredService<MainViewModel>();
-        var viewModel = new LayersViewModel(_selectedLevel!, level) { SaveLevelCommand = SaveLevelCommand };
+        var viewModel = new LayersViewModel(_layersService, _mainNavigationService, _mainFocusStateService, _selectedLevel!, level) { SaveLevelCommand = SaveLevelCommand };
+        _mainNavigationService.NavigateTo(viewModel);
 
-        mainVm.CurrentViewModel = viewModel;
-
-        _selectedLevel = null;
         IsLoadingLevel = false;
     }
 
@@ -154,8 +176,7 @@ public sealed partial class LevelsViewModel : ObservableObject
 
         await _levelsService.SaveLevelsAsync();
 
-        var mainVm = DependencyInjectionUtils.GetRequiredService<MainViewModel>();
-        mainVm.CurrentViewModel = this;
+        _mainNavigationService.NavigateTo<LevelsViewModel>();
     }
 
     private bool OnFilter(object obj)

@@ -2,9 +2,9 @@
 
 namespace GdLayers.Mvvm.Views.DataTemplates.Pages.Layers;
 
-public partial class GdObjectTypeListDataTemplate : Border
+public sealed partial class GdObjectGroupLayerModelDataTemplate : Border
 {
-    public GdObjectTypeListDataTemplate()
+    public GdObjectGroupLayerModelDataTemplate()
     {
         InitializeComponent();
     }

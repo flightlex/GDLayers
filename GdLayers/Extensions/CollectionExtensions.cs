@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GdLayers.Extensions;
 
@@ -35,5 +37,22 @@ public static class CollectionExtensions
             }
         }
         return false; // No duplicates found
+    }
+
+    public static void ParallelForEach<T>(this ICollection<T> collection, Action<T> action)
+    {
+        collection.AsParallel().ForAll(action);
+    }
+
+    public static void PartitionedParallelForEach<T>(this ICollection<T> collection, Action<T> action)
+    {
+        var partitioner = Partitioner.Create<T>(collection);
+        Parallel.ForEach(partitioner, action);
+    }
+
+    public static void ForEach<T>(this ICollection<T> collection, Action<T> action)
+    {
+        foreach (var item in collection)
+            action(item);
     }
 }

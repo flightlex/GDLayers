@@ -2,7 +2,7 @@
 
 namespace GdLayers.Mvvm.Views.DataTemplates.Pages.Layers;
 
-public partial class LayerDataTemplate : Border
+public sealed partial class LayerDataTemplate : Border
 {
     public LayerDataTemplate()
     {

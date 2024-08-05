@@ -74,14 +74,14 @@ public sealed class PageViewControl : StackPanel
             Style = transparentStyle,
             Content = previousPageIcon,
         };
-        _previousPageButton.Click += _previousPageButton_Click;
+        _previousPageButton.Click += NextPageButtonClick;
 
         _nextPageButton = new()
         {
             Style = transparentStyle,
             Content = nextPageIcon
         };
-        _nextPageButton.Click += _nextPageButton_Click;
+        _nextPageButton.Click += PreviousPageButtonClick;
 
         // page info
         _pageInfoTextBlock = new();
@@ -106,7 +106,7 @@ public sealed class PageViewControl : StackPanel
         Children.Add(_nextPageButton);
     }
 
-    private void _nextPageButton_Click(object sender, RoutedEventArgs e)
+    private void NextPageButtonClick(object sender, RoutedEventArgs e)
     {
         if (CurrentPageIndex >= LastPageIndex)
             return;
@@ -120,7 +120,7 @@ public sealed class PageViewControl : StackPanel
         PageChangedCommand.Execute(CurrentPageIndex);
     }
 
-    private void _previousPageButton_Click(object sender, RoutedEventArgs e)
+    private void PreviousPageButtonClick(object sender, RoutedEventArgs e)
     {
         if (CurrentPageIndex <= 1)
             return;

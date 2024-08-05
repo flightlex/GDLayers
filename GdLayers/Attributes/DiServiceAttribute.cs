@@ -4,7 +4,7 @@ using System;
 namespace GdLayers.Attributes;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
-public sealed class DependencyInjectionServiceAttribute : Attribute
+public sealed class DiServiceAttribute : Attribute
 {
     public Type? ImplementationType { get; set; }
     public Type? ServiceType { get; set; }

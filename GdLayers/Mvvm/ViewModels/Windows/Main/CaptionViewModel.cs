@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace GdLayers.Mvvm.ViewModels.Windows.Main;
 
-[DependencyInjectionService]
+[DiService]
 public sealed partial class CaptionViewModel : ObservableObject
 {
     [RelayCommand]

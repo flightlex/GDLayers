@@ -7,15 +7,18 @@ using System.Windows;
 
 namespace GdLayers;
 
-[DependencyInjectionService(ImplementationType = typeof(LocalLevelsService))]
+[DiService(ImplementationType = typeof(LocalLevelsService))]
 public sealed partial class App : Application
 {
     public App()
     {
-        DispatcherUnhandledException += App_DispatcherUnhandledException;
+#if !DEBUG
+        DispatcherUnhandledException += AppDispatcherUnhandledException;
+#endif
     }
 
     public static new App Current => (App)Application.Current;
+
     public new MainWindow MainWindow
     {
         get => (MainWindow)base.MainWindow;
@@ -25,18 +28,18 @@ public sealed partial class App : Application
     protected override void OnStartup(StartupEventArgs e)
     {
         // initializing dependency injection container
-        DependencyInjectionUtils.Initialize();
+        DiUtils.Initialize();
 
         // creating main window
-        MainWindow = DependencyInjectionUtils.GetRequiredService<MainWindow>();
-        MainWindow.DataContext = DependencyInjectionUtils.GetRequiredService<MainViewModel>();
+        MainWindow = DiUtils.GetRequiredService<MainWindow>();
+        MainWindow.DataContext = DiUtils.GetRequiredService<MainViewModel>();
 
         MainWindow.Show();
 
         base.OnStartup(e);
     }
 
-    private void App_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+    private void AppDispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
     {
         e.Handled = true;
         MessageBoxUtils.ShowError(e.Exception.Message);

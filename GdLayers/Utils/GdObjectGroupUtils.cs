@@ -5,11 +5,11 @@ using System.Text;
 
 namespace GdLayers.Utils;
 
-public static class GdObjectTypeListUtils
+public static class GdObjectGroupUtils
 {
-    public static IEnumerable<GdObjectTypeList> GetObjectTypeList()
+    public static IEnumerable<GdObjectGroup> GetGdObjectGroups()
     {
         var sortedTypes = Encoding.UTF8.GetString(Properties.Resources.SortedTypes);
-        return JsonConvert.DeserializeObject<IEnumerable<GdObjectTypeList>>(sortedTypes)!;
+        return JsonConvert.DeserializeObject<IEnumerable<GdObjectGroup>>(sortedTypes)!;
     }
 }

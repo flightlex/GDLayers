@@ -1,0 +1,60 @@
+﻿<Window
+    x:Class="GdLayers.Mvvm.Views.Windows.Pages.Layers.GdObjectGroupModelDescriptionWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:layerViewModels="clr-namespace:GdLayers.Mvvm.ViewModels.Windows.Pages.Layers"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:st="http://schemas.spicytaco.io/"
+    Title="Description"
+    Width="600"
+    Height="400"
+    d:DataContext="{d:DesignInstance Type=layerViewModels:GdObjectGroupModelDescriptionViewModel}"
+    Background="{StaticResource PrimaryDarkBrush}"
+    BorderBrush="{StaticResource PrimaryGrayBrush}"
+    BorderThickness="2"
+    Style="{StaticResource BorderlessWindow}"
+    WindowStartupLocation="CenterOwner"
+    mc:Ignorable="d">
+
+    <st:StackPanel Margin="20">
+
+        <!--  Description  -->
+        <TextBlock
+            HorizontalAlignment="Left"
+            FontWeight="Bold"
+            Text="{Binding Description, FallbackValue='This is looooooooooooooong ass description'}"
+            TextWrapping="Wrap" />
+
+        <!--  Object Ids  -->
+        <TextBlock
+            Margin="0,25,0,0"
+            HorizontalAlignment="Left"
+            Text="All block IDs in this category" />
+
+        <ListView
+            Margin="0,10,0,0"
+            st:StackPanel.Fill="Fill"
+            ItemsSource="{Binding ObjectIds, IsAsync=True}">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock
+                        HorizontalAlignment="Left"
+                        Text="{Binding}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+        <!--  Close  -->
+        <Button
+            Margin="0,20,0,0"
+            HorizontalAlignment="Right"
+            Command="{Binding CloseCommand}"
+            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+            Content="Close" />
+
+    </st:StackPanel>
+
+</Window>

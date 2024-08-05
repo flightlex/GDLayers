@@ -1,9 +1,9 @@
 [
   {
-    "ObjectType": 1,
+    "ObjectType": 0,
     "ObjectTypeName": "SolidBlock",
     "ObjectCount": 143,
-    "ObjectCollection": [
+    "ObjectIds": [
       1,
       2,
       3,
@@ -150,10 +150,10 @@
     ]
   },
   {
-    "ObjectType": 2,
+    "ObjectType": 1,
     "ObjectTypeName": "NonSolidBlock",
     "ObjectCount": 489,
-    "ObjectCollection": [
+    "ObjectIds": [
       5,
       73,
       80,
@@ -632,14 +632,14 @@
       2975,
       2978,
       2981,
-      2985,
+      2985
     ]
   },
   {
-    "ObjectType": 4,
+    "ObjectType": 2,
     "ObjectTypeName": "SolidSpike",
     "ObjectCount": 19,
-    "ObjectCollection": [
+    "ObjectIds": [
       8,
       39,
       103,
@@ -662,10 +662,10 @@
     ]
   },
   {
-    "ObjectType": 8,
+    "ObjectType": 3,
     "ObjectTypeName": "NonSolidSpike",
     "ObjectCount": 4,
-    "ObjectCollection": [
+    "ObjectIds": [
       1889,
       1890,
       1891,
@@ -673,10 +673,10 @@
     ]
   },
   {
-    "ObjectType": 16,
+    "ObjectType": 4,
     "ObjectTypeName": "AnimatedHazard",
     "ObjectCount": 8,
-    "ObjectCollection": [
+    "ObjectIds": [
       918,
       919,
       1327,
@@ -688,10 +688,10 @@
     ]
   },
   {
-    "ObjectType": 32,
+    "ObjectType": 5,
     "ObjectTypeName": "OtherHazard",
     "ObjectCount": 26,
-    "ObjectCollection": [
+    "ObjectIds": [
       135,
       1711,
       1712,
@@ -721,10 +721,10 @@
     ]
   },
   {
-    "ObjectType": 64,
+    "ObjectType": 6,
     "ObjectTypeName": "OutlineDecoration",
     "ObjectCount": 9,
-    "ObjectCollection": [
+    "ObjectIds": [
       506,
       507,
       508,
@@ -738,10 +738,10 @@
     ]
   },
   {
-    "ObjectType": 128,
+    "ObjectType": 7,
     "ObjectTypeName": "FillerDecoration",
     "ObjectCount": 600,
-    "ObjectCollection": [
+    "ObjectIds": [
       515,
       516,
       517,
@@ -1344,10 +1344,10 @@
     ]
   },
   {
-    "ObjectType": 256,
+    "ObjectType": 8,
     "ObjectTypeName": "AnimatedDecoration",
     "ObjectCount": 157,
-    "ObjectCollection": [
+    "ObjectIds": [
       85,
       86,
       87,
@@ -1508,10 +1508,10 @@
     ]
   },
   {
-    "ObjectType": 512,
+    "ObjectType": 9,
     "ObjectTypeName": "PixelDecoration",
     "ObjectCount": 1603,
-    "ObjectCollection": [
+    "ObjectIds": [
       2070,
       2071,
       2072,
@@ -3118,10 +3118,10 @@
     ]
   },
   {
-    "ObjectType": 1024,
+    "ObjectType": 10,
     "ObjectTypeName": "AnimatedPixelDecoration",
     "ObjectCount": 19,
-    "ObjectCollection": [
+    "ObjectIds": [
       2223,
       2246,
       2605,
@@ -3144,10 +3144,10 @@
     ]
   },
   {
-    "ObjectType": 2048,
+    "ObjectType": 11,
     "ObjectTypeName": "GlowDecoration",
     "ObjectCount": 46,
-    "ObjectCollection": [
+    "ObjectIds": [
       18,
       19,
       20,
@@ -3225,10 +3225,10 @@
     ]
   },
   {
-    "ObjectType": 4096,
+    "ObjectType": 12,
     "ObjectTypeName": "OtherDecoration",
     "ObjectCount": 449,
-    "ObjectCollection": [
+    "ObjectIds": [
       15,
       16,
       17,
@@ -3666,10 +3666,10 @@
     ]
   },
   {
-    "ObjectType": 8192,
+    "ObjectType": 13,
     "ObjectTypeName": "LaunchingPad",
     "ObjectCount": 5,
-    "ObjectCollection": [
+    "ObjectIds": [
       35,
       67,
       140,
@@ -3678,10 +3678,10 @@
     ]
   },
   {
-    "ObjectType": 16384,
+    "ObjectType": 14,
     "ObjectTypeName": "Orb",
     "ObjectCount": 11,
-    "ObjectCollection": [
+    "ObjectIds": [
       36,
       84,
       141,
@@ -3696,20 +3696,20 @@
     ]
   },
   {
-    "ObjectType": 32768,
+    "ObjectType": 15,
     "ObjectTypeName": "GravityPortal",
     "ObjectCount": 3,
-    "ObjectCollection": [
+    "ObjectIds": [
       10,
       11,
       2926
     ]
   },
   {
-    "ObjectType": 65536,
+    "ObjectType": 16,
     "ObjectTypeName": "GamemodePortal",
     "ObjectCount": 8,
-    "ObjectCollection": [
+    "ObjectIds": [
       12,
       13,
       47,
@@ -3721,19 +3721,19 @@
     ]
   },
   {
-    "ObjectType": 131072,
+    "ObjectType": 17,
     "ObjectTypeName": "SizePortal",
     "ObjectCount": 2,
-    "ObjectCollection": [
+    "ObjectIds": [
       99,
       101
     ]
   },
   {
-    "ObjectType": 262144,
+    "ObjectType": 18,
     "ObjectTypeName": "OtherPortal",
     "ObjectCount": 7,
-    "ObjectCollection": [
+    "ObjectIds": [
       45,
       46,
       286,
@@ -3744,10 +3744,10 @@
     ]
   },
   {
-    "ObjectType": 524288,
+    "ObjectType": 19,
     "ObjectTypeName": "SpeedModifier",
     "ObjectCount": 5,
-    "ObjectCollection": [
+    "ObjectIds": [
       200,
       201,
       202,
@@ -3756,10 +3756,10 @@
     ]
   },
   {
-    "ObjectType": 1048576,
+    "ObjectType": 20,
     "ObjectTypeName": "SpecialBlock",
     "ObjectCount": 9,
-    "ObjectCollection": [
+    "ObjectIds": [
       914,
       1755,
       1813,
@@ -3772,10 +3772,10 @@
     ]
   },
   {
-    "ObjectType": 2097152,
+    "ObjectType": 21,
     "ObjectTypeName": "Saw",
     "ObjectCount": 26,
-    "ObjectCollection": [
+    "ObjectIds": [
       183,
       184,
       185,
@@ -3805,10 +3805,10 @@
     ]
   },
   {
-    "ObjectType": 4194304,
+    "ObjectType": 22,
     "ObjectTypeName": "Collectible",
     "ObjectCount": 149,
-    "ObjectCollection": [
+    "ObjectIds": [
       1275,
       1329,
       1587,
@@ -3958,10 +3958,10 @@
     ]
   },
   {
-    "ObjectType": 8388608,
+    "ObjectType": 23,
     "ObjectTypeName": "Trigger",
     "ObjectCount": 129,
-    "ObjectCollection": [
+    "ObjectIds": [
       22,
       23,
       24,

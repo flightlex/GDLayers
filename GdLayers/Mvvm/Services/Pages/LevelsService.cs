@@ -5,9 +5,9 @@ using GeometryDashAPI.Data.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace GdLayers.Mvvm.Services.Pages.Levels;
+namespace GdLayers.Mvvm.Services.Pages;
 
-[DependencyInjectionService]
+[DiService]
 public sealed class LevelsService
 {
     private readonly LocalLevelsService _localLevelsService;
@@ -34,8 +34,6 @@ public sealed class LevelsService
     {
         await _localLevelsService.SaveLocalLevels();
     }
-
-
     public LevelCreatorModel GetLevel(int index)
     {
         return _localLevelsService.GetLevel(index);

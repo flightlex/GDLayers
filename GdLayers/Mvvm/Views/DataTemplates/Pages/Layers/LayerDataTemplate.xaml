@@ -5,11 +5,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-    xmlns:layers="clr-namespace:GdLayers.Mvvm.Models.Pages.Layers"
+    xmlns:layerModels="clr-namespace:GdLayers.Mvvm.Models.Pages.Layers"
     xmlns:local="clr-namespace:GdLayers.Mvvm.Views.DataTemplates.Pages.Layers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Height="100"
-    d:DataContext="{d:DesignInstance Type=layers:LayerModel}"
+    d:DataContext="{d:DesignInstance Type=layerModels:LayerModel}"
     d:DesignWidth="800"
     AllowDrop="True"
     Background="{StaticResource PrimaryDarkBrush}"
@@ -101,13 +101,13 @@
             Grid.Column="1"
             Margin="5"
             BorderThickness="0"
-            ItemsSource="{Binding GdObjectTypeListLayerModels}"
+            ItemsSource="{Binding GdObjectGroupLayerModels}"
             ScrollViewer.CanContentScroll="True"
             ScrollViewer.VerticalScrollBarVisibility="Visible">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <local:GdObjectTypeListLayerDataTemplate
+                    <local:GdObjectGroupLayerModelDataTemplate
                         Margin="5,2"
                         DataContext="{Binding}" />
                 </DataTemplate>

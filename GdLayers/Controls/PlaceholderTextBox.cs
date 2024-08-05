@@ -4,23 +4,16 @@ using System.Windows.Data;
 
 namespace GdLayers.Controls;
 
-public class PlaceholderTextBox : UserControl
+public sealed class PlaceholderTextBox : UserControl
 {
-    public static readonly DependencyProperty PlaceholderProperty =
-        DependencyProperty.Register(
-            nameof(Placeholder),
-            typeof(string),
-            typeof(PlaceholderTextBox),
-            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender)
-        );
+    public static readonly DependencyProperty PlaceholderProperty;
+    public static readonly DependencyProperty TextProperty;
 
-    public static readonly DependencyProperty TextProperty =
-        DependencyProperty.Register(
-            nameof(Text),
-            typeof(string),
-            typeof(PlaceholderTextBox),
-            new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault)
-        );
+    static PlaceholderTextBox()
+    {
+        PlaceholderProperty = DependencyProperty.Register( nameof(Placeholder), typeof(string), typeof(PlaceholderTextBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
+        TextProperty = DependencyProperty.Register( nameof(Text), typeof(string), typeof(PlaceholderTextBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+    }
 
     public string Placeholder
     {
@@ -51,7 +44,7 @@ public class PlaceholderTextBox : UserControl
 
         _textBox.SetBinding(TextBox.TextProperty, new Binding(nameof(Text)) { Source = this, Mode = BindingMode.TwoWay });
 
-        _textBox.TextChanged += _textBox_TextChanged;
+        _textBox.TextChanged += TextBoxTextChanged;
 
         container.Children.Add(_textBox);
         container.Children.Add(_placeholder);
@@ -61,7 +54,7 @@ public class PlaceholderTextBox : UserControl
         UpdatePlaceholderVisibility();
     }
 
-    private void _textBox_TextChanged(object sender, TextChangedEventArgs e)
+    private void TextBoxTextChanged(object sender, TextChangedEventArgs e)
     {
         SetCurrentValue(TextProperty, _textBox.Text);
         UpdatePlaceholderVisibility();

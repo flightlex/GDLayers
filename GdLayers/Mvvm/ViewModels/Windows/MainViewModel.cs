@@ -1,26 +1,28 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using GdLayers.Attributes;
+using GdLayers.Mvvm.Services.Navigations;
 using GdLayers.Mvvm.ViewModels.Pages;
 using GdLayers.Mvvm.ViewModels.Windows.Main;
 using System.Windows;
 
 namespace GdLayers.Mvvm.ViewModels.Windows;
 
-[DependencyInjectionService]
+[DiService]
 public sealed partial class MainViewModel : ObservableObject
 {
-    public MainViewModel(LevelsViewModel firstViewModel, CaptionViewModel captionViewModel)
+    public MainViewModel(MainNavigationService mainNavigationService, CaptionViewModel captionViewModel)
     {
-        _currentViewModel = firstViewModel;
-
+        _mainNavigationService = mainNavigationService;
         CaptionViewModel = captionViewModel;
+
+        MainNavigationService.NavigateTo<LevelsViewModel>();
     }
 
     public CaptionViewModel CaptionViewModel { get; }
 
     [ObservableProperty]
-    private ObservableObject _currentViewModel = null!;
+    private MainNavigationService _mainNavigationService;
 
     [RelayCommand]
     private void DragMove(Window window)
@@ -33,7 +35,5 @@ public sealed partial class MainViewModel : ObservableObject
     {
         if (window.WindowState == WindowState.Maximized)
             window.WindowState = WindowState.Normal;
-        //else
-        //    window.WindowState = WindowState.Maximized;
     }
 }

@@ -121,65 +121,128 @@
   <data name="AnimatedDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\AnimatedDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AnimatedDecorations_Description" xml:space="preserve">
+    <value>Animated Decorations are non-solid objects, that have any kind of animations that cannot kill the player and being used as decorations</value>
+  </data>
   <data name="AnimatedHazards" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\AnimatedHazards.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AnimatedHazards_Description" xml:space="preserve">
+    <value>Animated Hazards are hazard objects that have some sort of animation and can kill the player</value>
   </data>
   <data name="AnimatedPixelDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\AnimatedPixelDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="AnimatedPixelDecorations_Description" xml:space="preserve">
+    <value>Animated Pixel Decorations are non-solid objects, which are basically the same as "Pixel Decorations" but have some sort of animation as well</value>
+  </data>
   <data name="Collectibles" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\Collectibles.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Collectibles_Description" xml:space="preserve">
+    <value>Collectibles are interactive objects that can be picked up by the player and be used for condition checking farther in the level</value>
   </data>
   <data name="FillerDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\FillerDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="FillerDecorations_Description" xml:space="preserve">
+    <value>Filler Decorations are non-solid objects that are primarely used in "filling" the empty spaces and add more details</value>
+  </data>
   <data name="GamemodePortals" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\GamemodePortals.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GamemodePortals_Description" xml:space="preserve">
+    <value>Gamemode Portals are interactive objects that change the player mode once gone through, such as cube, wave, swingcopter and any other</value>
   </data>
   <data name="GlowDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\GlowDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="GlowDecorations_Description" xml:space="preserve">
+    <value>Glow Decorations are non-solid objects that are usually being used in pair with some other objects, they have transparency and make the other objects glow</value>
+  </data>
   <data name="GravityPortals" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\GravityPortals.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="GravityPortals_Description" xml:space="preserve">
+    <value>Gravity portals are interactive objects that change the player gravity based on the type of portal he went through</value>
   </data>
   <data name="LaunchingPads" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\LaunchingPads.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LaunchingPads_Description" xml:space="preserve">
+    <value>Launching Pads are interactive objects that can impact the player gravity and impulse the player into the air</value>
+  </data>
   <data name="NonSolidBlocks" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\NonSolidBlocks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NonSolidBlocks_Description" xml:space="preserve">
+    <value>Non-Solid Blocks are non-solid objects have no hitbox, and can be used for decorating among the solid blocks</value>
   </data>
   <data name="NonSolidSpikes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\NonSolidSpikes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="NonSolidSpikes_Description" xml:space="preserve">
+    <value>Non-Solid Spikes are "fake" spikes that have no hitbox and can be used in decorative purposes</value>
+  </data>
   <data name="Orbs" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\Orbs.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Orbs_Description" xml:space="preserve">
+    <value>Orbs are interactive objects that repond once the player click within their hitbox, they can impact the player gravity, teleport the player, and trigger any type of objects in the game</value>
   </data>
   <data name="OtherDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\OtherDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="OtherDecorations_Description" xml:space="preserve">
+    <value>Other Decorations are non-solid objects that weren't listed any above, they might represent some icons or any other decoration kind</value>
+  </data>
   <data name="OtherHazards" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\OtherHazards.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OtherHazards_Description" xml:space="preserve">
+    <value>Other Hazards are hazard objects that have no specific category, neither they are animated, can kill the player</value>
   </data>
   <data name="OtherPortals" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\OtherPortals.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="OtherPortals_Description" xml:space="preserve">
+    <value>Other Portals are interactive objects that can change the visual flow-direction, make the player dual-mode or even teleport</value>
+  </data>
   <data name="OutlineDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\OutlineDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="OutlineDecorations_Description" xml:space="preserve">
+    <value>Outline Decorations are non-solid objects that are basically white lines, which can be used in decorative purposes</value>
   </data>
   <data name="PixelDecorations" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\PixelDecorations.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="PixelDecorations_Description" xml:space="preserve">
+    <value>Pixel Decorations are non-solid objects that have lite-weighted pixel texture, usually absent of deep details</value>
+  </data>
   <data name="Saws" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\Saws.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Saws_Description" xml:space="preserve">
+    <value>Saws are hazard objects that usually have animation, but sometimes they dont, they will kill the player if he touches the hitbox</value>
   </data>
   <data name="SizePortals" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\SizePortals.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SizePortals_Description" xml:space="preserve">
+    <value>Size Portals are interactive objects that change the player size, that is either small or big</value>
+  </data>
   <data name="SolidBlocks" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\SolidBlocks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SolidBlocks_Description" xml:space="preserve">
+    <value>Solid Blocks are objects that are mainly used for gameplay structuring. They always have a solid hitbox that player can interact with</value>
+  </data>
   <data name="SolidSpikes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\SolidSpikes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="SolidSpikes_Description" xml:space="preserve">
+    <value>Solid Spikes are hazard object that will kill the player once collided </value>
   </data>
   <data name="SortedTypes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Data\SortedTypes.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -187,10 +250,19 @@
   <data name="SpecialBlocks" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\SpecialBlocks.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SpecialBlocks_Description" xml:space="preserve">
+    <value>Special Blocks are interactive blocks that can affect the existing blocks, such as D-Block that allows the wave to slide on solid objects without being killed, or platformer checkpoints and other</value>
+  </data>
   <data name="SpeedModifiers" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\SpeedModifiers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="SpeedModifiers_Description" xml:space="preserve">
+    <value>Speed Modifiers are interactive objects that change the player horizontal motion speed once collides with the hitbox</value>
+  </data>
   <data name="Triggers" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Media\ObjectTypeList\Triggers.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Triggers_Description" xml:space="preserve">
+    <value>Triggers are interactive/non-interactive objects that can be used from changing the background color to moving objects in the game, there are plenty of triggers</value>
   </data>
 </root>

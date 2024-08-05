@@ -7,11 +7,10 @@
     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:layerDataTemplates="clr-namespace:GdLayers.Mvvm.Views.DataTemplates.Pages.Layers"
-    xmlns:local="clr-namespace:GdLayers.Mvvm.Views.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:pages="clr-namespace:GdLayers.Mvvm.ViewModels.Pages"
+    xmlns:pageModels="clr-namespace:GdLayers.Mvvm.ViewModels.Pages"
     xmlns:st="http://schemas.spicytaco.io/"
-    d:DataContext="{d:DesignInstance Type=pages:LayersViewModel}"
+    d:DataContext="{d:DesignInstance Type=pageModels:LayersViewModel}"
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
@@ -51,7 +50,7 @@
                 VerticalAlignment="Center"
                 st:StackPanel.Fill="Fill"
                 Placeholder="Search for type"
-                Text="{Binding GdObjectTypeListSearchQuery, UpdateSourceTrigger=PropertyChanged}" />
+                Text="{Binding GdObjectGroupSearchQuery, UpdateSourceTrigger=PropertyChanged}" />
 
         </st:StackPanel>
 
@@ -60,11 +59,11 @@
             Grid.Row="1"
             Grid.Column="0"
             Margin="20,0"
-            ItemsSource="{Binding GdObjectTypeListModelsCollectionView}">
+            ItemsSource="{Binding GdObjectGroupModelsCollectionView}">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <layerDataTemplates:GdObjectTypeListDataTemplate DataContext="{Binding}" />
+                    <layerDataTemplates:GdObjectGroupModelDataTemplate DataContext="{Binding}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
 
@@ -90,7 +89,9 @@
                 Orientation="Horizontal">
 
                 <!--  Add Layer  -->
-                <Button Command="{Binding AddLayerCommand}">
+                <Button
+                    Command="{Binding AddLayerCommand}"
+                    IsEnabled="{Binding LayerCanBeAdded}">
 
                     <StackPanel Orientation="Horizontal">
 

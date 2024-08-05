@@ -1,14 +1,13 @@
 ﻿<Border
-    x:Class="GdLayers.Mvvm.Views.DataTemplates.Pages.Layers.GdObjectTypeListLayerDataTemplate"
+    x:Class="GdLayers.Mvvm.Views.DataTemplates.Pages.Layers.GdObjectGroupLayerModelDataTemplate"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
     xmlns:layerModels="clr-namespace:GdLayers.Mvvm.Models.Pages.Layers"
-    xmlns:local="clr-namespace:GdLayers.Mvvm.Views.DataTemplates.Pages.Layers"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Padding="0,5"
-    d:DataContext="{d:DesignInstance Type=layerModels:GdObjectTypeListLayerModel}"
+    d:DataContext="{d:DesignInstance Type=layerModels:GdObjectGroupLayerModel}"
     d:DesignWidth="200"
     Background="{StaticResource SecondaryDarkBrush}"
     BorderBrush="{StaticResource WhiteGrayBrush}"
@@ -27,7 +26,7 @@
         <TextBlock
             Grid.Column="0"
             Margin="5,0"
-            Text="{Binding Title, FallbackValue=Name}" />
+            Text="{Binding Title, FallbackValue=Title}" />
 
         <!--  Delete Button  -->
         <Button

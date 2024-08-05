@@ -1,14 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using GdLayers.Enums;
 using GdLayers.Extensions;
 using GdLayers.Mvvm.Models.Pages.Layers;
 using GdLayers.Mvvm.Models.Pages.Levels;
-using GdLayers.Mvvm.ViewModels.Windows;
+using GdLayers.Mvvm.Services.Navigations;
+using GdLayers.Mvvm.Services.Pages;
+using GdLayers.Mvvm.ViewModels.Windows.Pages.Layers;
+using GdLayers.Mvvm.Views.Windows;
+using GdLayers.Mvvm.Views.Windows.Pages.Layers;
+using GdLayers.Services;
 using GdLayers.Utils;
 using GeometryDashAPI.Levels;
-using GeometryDashAPI.Levels.Enums;
-using GeometryDashAPI.Levels.GameObjects.Triggers;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -21,18 +24,28 @@ namespace GdLayers.Mvvm.ViewModels.Pages;
 
 public sealed partial class LayersViewModel : ObservableObject
 {
-    private static List<GdObjectTypeListModel> _cachedGdObjectTypeLists = null!;
+    private static List<GdObjectGroupModel> _cachedGdObjectGroupModels = null!;
 
+    private readonly LayersService _layersService;
     private readonly LevelModel _levelModel;
     private readonly Level _level;
+    private readonly MainNavigationService _mainNavigationService;
+    private readonly StateService<MainWindow, FocusState> _mainFocusStateService;
 
-    public LayersViewModel(LevelModel levelModel, Level level)
+    public LayersViewModel(
+        LayersService layersService,
+        MainNavigationService mainNavigatinoService,
+        StateService<MainWindow, FocusState> mainFocusStateService,
+        LevelModel levelModel,
+        Level level)
     {
+        _layersService = layersService;
+        _mainNavigationService = mainNavigatinoService;
+        _mainFocusStateService = mainFocusStateService;
         _levelModel = levelModel;
         _level = level;
 
         _layers.CollectionChanged += LayersCollectionChanged;
-
         OnLoadGdObjectTypes();
     }
 
@@ -41,14 +54,10 @@ public sealed partial class LayersViewModel : ObservableObject
         Layers.CollectionChanged -= LayersCollectionChanged;
     }
 
-    private void LayersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-    {
-        OnPropertyChanged(nameof(CanBeApplied));
-    }
-
     public IAsyncRelayCommand<(LevelModel LevelModel, Level Level)> SaveLevelCommand { get; set; } = null!;
 
     public bool CanBeApplied => !IsApplying && Layers.Count > 0;
+    public bool LayerCanBeAdded => !IsApplying;
     public bool CanGoBack => !IsApplying;
 
     [ObservableProperty]
@@ -60,54 +69,47 @@ public sealed partial class LayersViewModel : ObservableObject
     private ObservableCollection<LayerModel> _layers = [];
 
     [ObservableProperty]
-    private ObservableCollection<GdObjectTypeListModel> _gdObjectTypeListModels = [];
+    private ObservableCollection<GdObjectGroupModel> _gdObjectGroupModels = [];
 
     [ObservableProperty]
-    private ICollectionView _gdObjectTypeListModelsCollectionView = null!;
+    private ICollectionView _gdObjectGroupModelsCollectionView = null!;
 
-    private string _gdObjectTypeListSearchQuery = string.Empty;
-    public string GdObjectTypeListSearchQuery
+    private string _gdObjectGroupSearchQuery = string.Empty;
+    public string GdObjectGroupSearchQuery
     {
-        get => _gdObjectTypeListSearchQuery;
+        get => _gdObjectGroupSearchQuery;
         set
         {
-            if (value == _gdObjectTypeListSearchQuery)
+            if (value == _gdObjectGroupSearchQuery)
                 return;
 
-            _gdObjectTypeListSearchQuery = value;
+            _gdObjectGroupSearchQuery = value;
+
             OnPropertyChanged();
-            GdObjectTypeListModelsCollectionView.Refresh();
+            GdObjectGroupModelsCollectionView.Refresh();
         }
     }
 
     [RelayCommand]
     private void OnLoadGdObjectTypes()
     {
-        TryParseGdObjectLists();
-        foreach (var gdObject in _cachedGdObjectTypeLists)
+        TryParseGdObjectGroups();
+        foreach (var gdObject in _cachedGdObjectGroupModels)
         {
-            GdObjectTypeListModels.Add(gdObject);
-            gdObject.RemoveCommand = RemoveGdObjectTypeListModelCommand;
+            GdObjectGroupModels.Add(gdObject);
+            gdObject.RemoveCommand = RemoveGdObjectGroupModelCommand;
+            gdObject.ShowDescriptionCommand = ShowGdObjectGroupModelDescriptionCommand;
         }
 
-        GdObjectTypeListModelsCollectionView = CollectionViewSource.GetDefaultView(GdObjectTypeListModels);
-        GdObjectTypeListModelsCollectionView.Filter = GdObjectTypeListFilter;
-        GdObjectTypeListModelsCollectionView.SortDescriptions.Add(new(nameof(GdObjectTypeListModel.Title), ListSortDirection.Ascending));
+        GdObjectGroupModelsCollectionView = CollectionViewSource.GetDefaultView(GdObjectGroupModels);
+        GdObjectGroupModelsCollectionView.Filter = GdObjectGroupFilter;
+        GdObjectGroupModelsCollectionView.SortDescriptions.Add(new SortDescription(nameof(GdObjectGroupModel.Title), ListSortDirection.Ascending));
     }
 
     [RelayCommand]
     private void OnAddLayer()
     {
-        var nextFree = -1;
-        for (int i = 0; i < 1000; i++)
-        {
-            if (!Layers.Any(x => x.LayerIndex == i))
-            {
-                nextFree = i;
-                break;
-            }
-        }
-
+        var nextFree = _layersService.TryGetFreeLayerIndex(Layers);
         if (nextFree == -1)
         {
             MessageBox.Show("There are no more layers to use (bro how..)");
@@ -116,8 +118,8 @@ public sealed partial class LayersViewModel : ObservableObject
 
         var newLayer = new LayerModel(_level)
         {
-            ReturnGdObjectTypeListModelBackCommand = ReturnGdObjectTypeListModelBackCommand,
-            RemoveCommand = RemoveLayerCommand,
+            ReturnGdObjectGroupModelBackCommand = ReturnGdObjectGroupModelBackCommand,
+            RemoveCommand = RemoveLayerModelCommand,
             LayerIndex = nextFree
         };
 
@@ -125,23 +127,37 @@ public sealed partial class LayersViewModel : ObservableObject
     }
 
     [RelayCommand]
-    private void OnRemoveGdObjectTypeListModel(GdObjectTypeListModel gdObjectTypeListModel)
+    private void OnRemoveGdObjectGroupModel(GdObjectGroupModel gdObjectGroupModel)
     {
-        GdObjectTypeListModels.Remove(gdObjectTypeListModel);
+        GdObjectGroupModels.Remove(gdObjectGroupModel);
     }
 
     [RelayCommand]
-    private void OnReturnGdObjectTypeListModelBack(GdObjectTypeListModel gdObjectTypeListModel)
+    private void OnReturnGdObjectGroupModelBack(GdObjectGroupModel gdObjectGroupModel)
     {
-        GdObjectTypeListModels.Add(gdObjectTypeListModel);
+        GdObjectGroupModels.Add(gdObjectGroupModel);
     }
 
     [RelayCommand]
-    private void OnRemoveLayer(LayerModel layerModel)
+    private void OnShowGdObjectGroupModelDescription(GdObjectGroupModel gdObjectGroupModel)
     {
-        foreach (var gdObjectTypeListModel in layerModel.GdObjectTypeListLayerModels)
+        _mainFocusStateService.SetState(FocusState.Unfocused);
+
+        var window = new GdObjectGroupModelDescriptionWindow();
+        window.DataContext = new GdObjectGroupModelDescriptionViewModel(gdObjectGroupModel);
+        window.Owner = DiUtils.GetRequiredService<MainWindow>();
+
+        window.ShowDialog();
+
+        _mainFocusStateService.SetState(FocusState.Focused);
+    }
+
+    [RelayCommand]
+    private void OnRemoveLayerModel(LayerModel layerModel)
+    {
+        foreach (var gdObjectGroupLayerModel in layerModel.GdObjectGroupLayerModels)
         {
-            GdObjectTypeListModels.Add(gdObjectTypeListModel.GdObjectTypeListModel);
+            GdObjectGroupModels.Add(gdObjectGroupLayerModel.GdObjectGroupModel);
         }
 
         Layers.Remove(layerModel);
@@ -150,10 +166,7 @@ public sealed partial class LayersViewModel : ObservableObject
     [RelayCommand]
     private void OnReturnBack()
     {
-        var levelsVm = DependencyInjectionUtils.GetRequiredService<LevelsViewModel>();
-        var mainVm = DependencyInjectionUtils.GetRequiredService<MainViewModel>();
-
-        mainVm.CurrentViewModel = levelsVm;
+        _mainNavigationService.NavigateTo<LevelsViewModel>();
     }
 
     [RelayCommand]
@@ -173,54 +186,43 @@ public sealed partial class LayersViewModel : ObservableObject
             IsApplying = true;
 
             //// foreaching every layer
-            Parallel.ForEach(Layers, layer =>
+            Layers.ParallelForEach(layer =>
             {
-                foreach (var gdObjectTypeListLayer in layer.GdObjectTypeListLayerModels)
+                layer.GdObjectGroupLayerModels.PartitionedParallelForEach(gdObjectGroupLayerModel =>
                 {
-                    // Use Partitioner to split the work among threads
-                    var partitioner = Partitioner.Create(gdObjectTypeListLayer.GdObjectTypeList.ObjectCollection);
-                    Parallel.ForEach(partitioner, id =>
+                    gdObjectGroupLayerModel.GdObjectGroup.ObjectIds.ForEach(id =>
                     {
-                        ApplyEditorLayerForObjectId(layer.Level.Blocks, id, layer.LayerIndex);
+                        _layersService.ApplyEditorLayerForObjectId(layer.Level.Blocks, id, layer.LayerIndex);
                     });
-                }
+                });
             });
 
             await SaveLevelCommand.ExecuteAsync((_levelModel, _level));
-
             IsApplying = false;
         }
     }
 
-    private bool GdObjectTypeListFilter(object obj)
+
+    private bool GdObjectGroupFilter(object obj)
     {
-        if (obj is null || obj is not GdObjectTypeListModel gdObjTypeList)
+        if (obj is null || obj is not GdObjectGroupModel gdObjectGroupModel)
             return false;
 
-        return gdObjTypeList.Title.ContainsExt(GdObjectTypeListSearchQuery);
+        return gdObjectGroupModel.Title.ContainsExt(GdObjectGroupSearchQuery);
     }
-
-    private void TryParseGdObjectLists()
+    private void TryParseGdObjectGroups()
     {
-        if (_cachedGdObjectTypeLists is not null)
+        if (_cachedGdObjectGroupModels is not null)
             return;
 
-        var types = GdObjectTypeListUtils.GetObjectTypeList();
-        _cachedGdObjectTypeLists = [];
+        var types = GdObjectGroupUtils.GetGdObjectGroups();
+        _cachedGdObjectGroupModels = [];
 
         foreach (var type in types)
-            _cachedGdObjectTypeLists.Add(new(type));
+            _cachedGdObjectGroupModels.Add(new GdObjectGroupModel(type));
     }
-
-    private void ApplyEditorLayerForObjectId(BlockList blockList, int objectId, int layerIndex)
+    private void LayersCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
-        foreach (var block in blockList)
-        {
-            if (block.Id == objectId)
-            {
-                block.EditorL = (short)layerIndex;
-                block.EditorL2 = 0;
-            }
-        }
+        OnPropertyChanged(nameof(CanBeApplied));
     }
 }

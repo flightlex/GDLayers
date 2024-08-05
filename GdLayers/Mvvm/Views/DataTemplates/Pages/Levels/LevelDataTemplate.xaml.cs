@@ -4,7 +4,7 @@ using System.Windows.Media.Animation;
 
 namespace GdLayers.Mvvm.Views.DataTemplates.Pages.Levels;
 
-public partial class LevelDataTemplate : Button
+public sealed partial class LevelDataTemplate : Button
 {
     private static DoubleAnimation _fadeAnim;
 

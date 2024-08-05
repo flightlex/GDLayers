@@ -6,16 +6,16 @@ using System.Collections.Generic;
 namespace GdLayers.Models;
 
 [JsonObject]
-public class GdObjectTypeList
+public sealed class GdObjectGroup
 {
-    public GdObjectTypeList()
+    public GdObjectGroup()
     {
-        ObjectCollection = null!;
+        ObjectIds = null!;
     }
 
-    public GdObjectTypeList(List<int> objects, ObjectType type)
+    public GdObjectGroup(List<int> ids, ObjectType type)
     {
-        ObjectCollection = objects;
+        ObjectIds = ids;
         ObjectType = type;
     }
 
@@ -23,11 +23,11 @@ public class GdObjectTypeList
     public ObjectType ObjectType { get; set; }
 
     [JsonProperty(Order = 3)]
-    public List<int> ObjectCollection { get; set; }
+    public List<int> ObjectIds { get; set; }
 
 
     [JsonProperty(Order = 2)]
-    public int ObjectCount => ObjectCollection.Count;
+    public int ObjectCount => ObjectIds.Count;
 
     [JsonProperty(Order = 1)]
     public string? ObjectTypeName => Enum.GetName(typeof(ObjectType), ObjectType);

@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace GdLayers.Utils;
 
-public static class DependencyInjectionUtils
+public static class DiUtils
 {
     private static IServiceProvider _serviceProvider = null!;
 
@@ -28,14 +28,14 @@ public static class DependencyInjectionUtils
         var classTypes = Assembly
             .GetExecutingAssembly()
             .GetTypes()
-            .Where(x => x.IsClass && x.GetCustomAttributes<DependencyInjectionServiceAttribute>().Count() > 0)
+            .Where(x => x.IsClass && x.GetCustomAttributes<DiServiceAttribute>().Count() > 0)
             .ToArray();
 
         List<Type> preloads = [];
 
         foreach (var classType in classTypes)
         {
-            var attributes = classType.GetCustomAttributes<DependencyInjectionServiceAttribute>();
+            var attributes = classType.GetCustomAttributes<DiServiceAttribute>();
 
             foreach (var attribute in attributes)
             {
